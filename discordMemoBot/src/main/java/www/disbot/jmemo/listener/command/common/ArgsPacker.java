@@ -7,6 +7,8 @@ import www.disbot.jmemo.listener.command.Command;
 import www.disbot.jmemo.listener.command.exception.ArgsNumberDismatchException;
 
 public class ArgsPacker<C extends Command> {
+	public static final String SEPERATOR = "/";
+	
 	public Map<String, String> pack(C cmd, String[] args) throws ArgsNumberDismatchException {
 		Map<String, String> result = new HashMap<>();
 		

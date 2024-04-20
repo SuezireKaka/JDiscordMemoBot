@@ -38,7 +38,8 @@ public class MessageListener extends ListenerAdapter {
             log.info("디스코드 Message 문자열 값 공백");
         }
 
-        String[] messageArray = message.getContentDisplay().split("/");
+        String[] messageArray = message.getContentDisplay()
+        		.split(ArgsPacker.SEPERATOR);
         
 		try {
 			String[] returnMessageArray = classifyCommand(textChannel, messageArray);
