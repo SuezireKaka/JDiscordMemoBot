@@ -10,7 +10,7 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
-import www.disbot.jmemo.listener.DiscordListener;
+import www.disbot.jmemo.listener.MessageListener;
 import www.disbot.jmemo.sys.DiscordBotToken;
 
 @SpringBootApplication
@@ -22,10 +22,10 @@ public class DiscordMemoBotApplication {
         DiscordBotToken discordBotTokenEntity = context.getBean(DiscordBotToken.class);
         String discordBotToken = discordBotTokenEntity.getDiscordBotToken();
 
-        JDA jda = JDABuilder.createDefault(discordBotToken)
-                .setActivity(Activity.playing("자바로 동작을"))
-                .enableIntents(GatewayIntent.MESSAGE_CONTENT)
-                .addEventListeners(new DiscordListener())
+        JDABuilder.createDefault(discordBotToken)
+                .setActivity(Activity.playing("자바로 동작"))
+                .enableIntents(GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
+                .addEventListeners(new MessageListener())
                 .build();
 	}
 

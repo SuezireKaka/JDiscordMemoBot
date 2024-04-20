@@ -13,11 +13,14 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import www.disbot.jmemo.listener.command.HelloWorldCommand;
 import www.disbot.jmemo.listener.command.ListAllCommand;
+import www.disbot.jmemo.listener.command.common.MessageOrganizer;
 
 @Slf4j
-public class DiscordListener extends ListenerAdapter {
+public class MessageListener extends ListenerAdapter {
 	@Value("${discord.bot.allow-channel.id}")
-	private String channelId;
+	private String mainChannelId;
+	
+	private final MessageOrganizer organizer = MessageOrganizer.getInstance();
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
@@ -36,29 +39,33 @@ public class DiscordListener extends ListenerAdapter {
 
         String[] messageArray = message.getContentDisplay().split("/");
 
-        if (messageArray[0].equalsIgnoreCase(HelloWorldCommand.COMMAND)) {
+        String[] returnMessageArray = classifyCommand(textChannel, messageArray);
+        
+        if (returnMessageArray.length != 0) {
+        	
+        	String[] organizedArray = organizer.organizeForDiscord(returnMessageArray);
+        	
+        	for (String organizedMessage : organizedArray) {
+        		textChannel.sendMessage(organizedMessage)
+					.queue();
+        	}
+        }
+    }
+
+	private String[] classifyCommand(TextChannel textChannel, String[] messageArray) {
+		
+		if (messageArray[0].equalsIgnoreCase(HelloWorldCommand.COMMAND)) {
             String[] messageArgs = Arrays.copyOfRange(messageArray, 1, messageArray.length);
 
-            String returnMessage = new HelloWorldCommand().command(messageArgs);
-            textChannel.sendMessage(returnMessage).queue();
+            return new HelloWorldCommand().command(messageArgs);
+            
         }
         else if (messageArray[0].equalsIgnoreCase(ListAllCommand.COMMAND)) {
             String[] messageArgs = Arrays.copyOfRange(messageArray, 1, messageArray.length);
 
-            String returnMessage = new ListAllCommand().command(messageArgs);
-            textChannel.sendMessage(returnMessage).queue();
+            return new ListAllCommand().command(messageArgs);
         }
-    }
-    
-    @Override
-    public void onGuildMemberJoin(GuildMemberJoinEvent event) {
-    	User newUser = event.getUser();
-    	TextChannel textChannel = event.getGuild().getTextChannelById(channelId);
-    	
-    	String returnMessage = "**%s**님, 어서 오세요!";
-    	
-    	textChannel.sendMessage(returnMessage.formatted(newUser.getName()))
-    		.queue();
-    }
+		return new String[]{};
+	}
     
 }
