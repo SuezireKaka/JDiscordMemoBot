@@ -55,9 +55,11 @@ public class MessageListener extends ListenerAdapter {
 	        }
 		}
 		catch (Exception e) {
-			textChannel.sendMessage("에러 발생 : " + e.getMessage()).queue();
+			String errorMessage = "에러 발생 : " + e.getMessage();
 			
-			e.printStackTrace();
+			textChannel.sendMessage(errorMessage).queue();
+			
+			log.error(errorMessage);
 		}
         
         
