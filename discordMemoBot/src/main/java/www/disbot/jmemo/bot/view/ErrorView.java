@@ -6,14 +6,16 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import net.dv8tion.jda.api.entities.MessageEmbed;
+import www.disbot.jmemo.bot.model.CommandVO;
 import www.disbot.jmemo.bot.model.HelloWorldVO;
 
 @Getter
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class ErrorView extends DiscordView {
 	public static final String ERROR_TITLE = "에러 발생";
 	
@@ -21,10 +23,8 @@ public class ErrorView extends DiscordView {
 	
 	public static final String ERROR_FIELD_TYPENAME = "mention";
 	
-	@NonNull
 	private Exception e;
 	
-	@NonNull
 	private String makerUsername;
 	
 	@Override

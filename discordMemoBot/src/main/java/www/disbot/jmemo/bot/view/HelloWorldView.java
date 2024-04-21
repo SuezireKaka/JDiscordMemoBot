@@ -3,17 +3,18 @@ package www.disbot.jmemo.bot.view;
 import java.util.Arrays;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import www.disbot.jmemo.bot.command.HelloWorldCommand;
+import www.disbot.jmemo.bot.model.CommandVO;
 import www.disbot.jmemo.bot.model.HelloWorldVO;
 
 @Getter
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class HelloWorldView extends DiscordView {
-	@NonNull
 	private HelloWorldVO rawVO;
 	
 	@Override

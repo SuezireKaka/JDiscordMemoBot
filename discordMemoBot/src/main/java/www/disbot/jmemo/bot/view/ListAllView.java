@@ -3,18 +3,16 @@ package www.disbot.jmemo.bot.view;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import www.disbot.jmemo.bot.command.ListAllCommand;
 import www.disbot.jmemo.bot.model.CommandVO;
 import www.disbot.jmemo.bot.view.common.ListTypeProvider;
 
 @Getter
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class ListAllView extends DiscordView {
-	@NonNull
 	private List<CommandVO> rawVOList;
 	
 	@Override
