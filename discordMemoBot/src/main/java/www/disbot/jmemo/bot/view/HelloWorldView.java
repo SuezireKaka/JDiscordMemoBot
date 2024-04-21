@@ -1,6 +1,5 @@
 package www.disbot.jmemo.bot.view;
 
-import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,8 +13,6 @@ import www.disbot.jmemo.bot.model.HelloWorldVO;
 @Getter
 @RequiredArgsConstructor
 public class HelloWorldView extends DiscordView {
-	public static final Color HELLO_WORLD_COLOR = new Color(52, 200, 31);
-	
 	@NonNull
 	private HelloWorldVO rawVO;
 	
@@ -24,7 +21,7 @@ public class HelloWorldView extends DiscordView {
 		setEmbedBuilder(this.getEmbedBuilder()
 				.setTitle(HelloWorldCommand.USAGE)
 				.setDescription(HelloWorldCommand.USAGE + RESULT_TITLE_SUFFIX)
-				.setColor(HELLO_WORLD_COLOR));
+				.setColor(SUCCESS_COLOR));
 		return Arrays.asList(new String[]{rawVO.getMessage()});
 	}
 
