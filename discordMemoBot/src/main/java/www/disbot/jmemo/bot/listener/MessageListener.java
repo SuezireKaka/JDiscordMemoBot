@@ -1,4 +1,4 @@
-package www.disbot.jmemo.bot;
+package www.disbot.jmemo.bot.listener;
 
 import java.util.Arrays;
 
@@ -10,6 +10,7 @@ import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import www.disbot.jmemo.bot.ResponseCarrier;
 import www.disbot.jmemo.bot.command.common.ArgsPacker;
 import www.disbot.jmemo.bot.controller.CommandController;
 import www.disbot.jmemo.bot.view.ErrorView;

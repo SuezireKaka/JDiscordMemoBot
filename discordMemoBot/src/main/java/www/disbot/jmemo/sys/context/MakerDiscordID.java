@@ -1,4 +1,4 @@
-package www.disbot.jmemo.sys;
+package www.disbot.jmemo.sys.context;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 public class MakerDiscordID {
 	
 	@Value("${discord.bot.maker.discord-user.id}")
-    private String MakerDiscordID;
+    private String makerDiscordID;
 
     public String getMakerDiscordID() {
-        return MakerDiscordID;
+        return makerDiscordID;
     }
 }

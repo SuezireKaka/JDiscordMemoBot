@@ -6,8 +6,7 @@ import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import www.disbot.jmemo.bot.view.View;
 
 public class ResponseCarrier {
-	public void carryResponseToChannel(
-			TextChannel textChannel, View resultView) {
+	public void carryResponseToChannel(TextChannel textChannel, View resultView) {
 		resultView.initEmbed();
 		
 		List<String> resultTextList = resultView.textify();
