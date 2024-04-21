@@ -47,6 +47,8 @@ public class MessageListener extends ListenerAdapter {
 			View resultView = controller.execute(commandKey, commandArgs);
 			
 			if (resultView != null) {
+				resultView.initEmbed();
+				
 				List<String> resultTextList = resultView.textify();
 				
 				for (String text : resultTextList) {

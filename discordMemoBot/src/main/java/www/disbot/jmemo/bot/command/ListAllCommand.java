@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import www.disbot.jmemo.bot.command.common.ArgsPacker;
 import www.disbot.jmemo.bot.command.listAll.ClassScanner;
 import www.disbot.jmemo.bot.model.CommandVO;
 import www.disbot.jmemo.bot.view.ListAllView;
@@ -15,6 +16,8 @@ public class ListAllCommand implements Command {
 	public static final String EXPLAIN = "모든 커맨드를 설명할게요";
 	
 	public static final String[] ARGS_NAME_ARRAY = new String[]{};
+	
+	public static final String USAGE = ArgsPacker.usagePack(COMMAND, ARGS_NAME_ARRAY);
 
 	@Override
 	public String[] getArgNameArray() {
@@ -33,9 +36,9 @@ public class ListAllCommand implements Command {
 	   	
 	   	for (Class<?> c : commandClassList) {
 	   		try {
-				Field command = c.getDeclaredField("COMMAND");
+				Field usage = c.getDeclaredField("USAGE");
 				Field explain = c.getDeclaredField("EXPLAIN");
-				result.add(new CommandVO((String) command.get(null), (String) explain.get(null)));
+				result.add(new CommandVO((String) usage.get(null), (String) explain.get(null)));
 			}
 	   		catch (Exception e) {
 				e.printStackTrace();

@@ -17,19 +17,24 @@ public class HelloWorldView extends DiscordView {
 	private HelloWorldVO rawVO;
 	
 	@Override
-	public List<String> textify() {
+	public void initEmbed() {
 		setEmbedBuilder(this.getEmbedBuilder()
 				.setTitle(HelloWorldCommand.USAGE)
 				.setDescription(HelloWorldCommand.USAGE + RESULT_TITLE_SUFFIX)
 				.setColor(SUCCESS_COLOR));
+	}
+	
+	@Override
+	public List<String> textify() {
 		return Arrays.asList(new String[]{rawVO.getMessage()});
 	}
 
 	@Override
 	public MessageEmbed closeWith(String value) {
+		String type = HelloWorldVO.class.getDeclaredFields()[0].getName();
+		
 		return this.getEmbedBuilder()
-				.addField(HelloWorldVO.class.getDeclaredFields()[0].getName(),
-						value, false)
+				.addField(type, value, false)
 				.build();
 	}
 }
