@@ -12,6 +12,9 @@ public interface View {
 	
 	public static final String RESULT_TITLE_SUFFIX = "의 결과물";
 	
-	public MessageEmbed closeWith(String value);
+	public static final int MAX_ONE_VALUE_LENGTH = 1000;
+	
 	public List<String> textify();
+	
+	public MessageEmbed closeWith(String value);
 }

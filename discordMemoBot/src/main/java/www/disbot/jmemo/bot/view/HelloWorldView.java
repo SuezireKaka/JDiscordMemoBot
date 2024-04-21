@@ -14,24 +14,25 @@ import www.disbot.jmemo.bot.model.HelloWorldVO;
 @Getter
 @RequiredArgsConstructor
 public class HelloWorldView extends DiscordView {
+	public static final Color HELLO_WORLD_COLOR = new Color(52, 200, 31);
+	
 	@NonNull
 	private HelloWorldVO rawVO;
+	
+	@Override
+	public List<String> textify() {
+		setEmbedBuilder(this.getEmbedBuilder()
+				.setTitle(HelloWorldCommand.USAGE)
+				.setDescription(HelloWorldCommand.USAGE + RESULT_TITLE_SUFFIX)
+				.setColor(HELLO_WORLD_COLOR));
+		return Arrays.asList(new String[]{rawVO.getMessage()});
+	}
 
 	@Override
 	public MessageEmbed closeWith(String value) {
 		return this.getEmbedBuilder()
-				.addField("msg:", value, false)
+				.addField(HelloWorldVO.class.getDeclaredFields()[0].getName(),
+						value, false)
 				.build();
 	}
-
-	@Override
-	public List<String> textify() {
-		setEmbedBuilder(this.getEmbedBuilder()
-				.setTitle(HelloWorldCommand.USAGE + RESULT_TITLE_SUFFIX)
-				.setColor(new Color(52, 200, 31))
-				.addBlankField(false)
-				.setAuthor("JMemo"));
-		return Arrays.asList(new String[]{rawVO.getMessage()});
-	}
-
 }

@@ -50,7 +50,7 @@ public class MessageListener extends ListenerAdapter {
 				List<String> resultTextList = resultView.textify();
 				
 				for (String text : resultTextList) {
-					textChannel.sendMessage(text)
+					textChannel.sendMessage("")
 						.setEmbeds(resultView.closeWith(text))
 						.queue();
 				}
