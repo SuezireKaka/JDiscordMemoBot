@@ -1,4 +1,4 @@
-package www.disbot.jmemo.listener.command.listAll;
+package www.disbot.jmemo.bot.command.listAll;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.Enumeration;
 import java.util.List;
 
-import www.disbot.jmemo.listener.command.Command;
+import www.disbot.jmemo.bot.command.Command;
 
 public class ClassScanner {
 	public 	List<Class<?>> findAllCommands(Package pack) {

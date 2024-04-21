@@ -10,7 +10,7 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
-import www.disbot.jmemo.listener.MessageListener;
+import www.disbot.jmemo.bot.MessageListener;
 import www.disbot.jmemo.sys.DiscordBotToken;
 
 @SpringBootApplication
