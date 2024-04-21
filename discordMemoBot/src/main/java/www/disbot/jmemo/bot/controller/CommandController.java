@@ -2,9 +2,11 @@ package www.disbot.jmemo.bot.controller;
 
 import java.util.Map;
 
+import www.disbot.jmemo.bot.command.Command;
 import www.disbot.jmemo.bot.command.HelloWorldCommand;
 import www.disbot.jmemo.bot.command.ListAllCommand;
 import www.disbot.jmemo.bot.command.common.ArgsPacker;
+import www.disbot.jmemo.bot.command.exception.NoCommandFoundException;
 import www.disbot.jmemo.bot.view.View;
 
 public class CommandController {
@@ -30,6 +32,10 @@ public class CommandController {
 
             return new ListAllCommand().command(packedArgs);
         }
+		
+		if (key.startsWith(Command.PREFIX) && ! key.equals(Command.PREFIX)) {
+			throw new NoCommandFoundException(key, args);
+		}
 		
 		return null;
 	}

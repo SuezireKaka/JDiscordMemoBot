@@ -14,12 +14,13 @@ public interface View {
 	public static final String OMIT_SUFFIX = "(...";
 	public static final String OMIT_PREFIX = "...)";
 	
+	public static final String MENTION_FORMAT = "<@%s>";
+	
 	public static final String LIST_SEPERATOR = "\n";
 	
 	public static final String RESULT_TITLE_SUFFIX = "의 결과물";
 	
 	public static final Color SUCCESS_COLOR = new Color(52, 200, 31);
-	public static final Color ERROR_COLOR = new Color(200, 31, 52);
 	
 	public static final int MAX_ONE_VALUE_LENGTH = 1000;
 	

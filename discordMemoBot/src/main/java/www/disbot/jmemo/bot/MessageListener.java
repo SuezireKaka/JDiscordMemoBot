@@ -1,10 +1,9 @@
 package www.disbot.jmemo.bot;
 
 import java.util.Arrays;
-import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
-
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.User;
@@ -13,14 +12,18 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import www.disbot.jmemo.bot.command.common.ArgsPacker;
 import www.disbot.jmemo.bot.controller.CommandController;
+import www.disbot.jmemo.bot.view.ErrorView;
 import www.disbot.jmemo.bot.view.View;
 
 @Slf4j
+@RequiredArgsConstructor
 public class MessageListener extends ListenerAdapter {
-	@Value("${discord.bot.allow-channel.id}")
-	private String mainChannelId;
-	
 	private CommandController controller = new CommandController();
+	
+	private ResponseCarrier carrier = new ResponseCarrier();
+	
+	@NonNull
+	private String makerID;
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
@@ -47,23 +50,16 @@ public class MessageListener extends ListenerAdapter {
 			View resultView = controller.execute(commandKey, commandArgs);
 			
 			if (resultView != null) {
-				resultView.initEmbed();
-				
-				List<String> resultTextList = resultView.textify();
-				
-				for (String text : resultTextList) {
-					textChannel.sendMessage("")
-						.setEmbeds(resultView.closeWith(text))
-						.queue();
-				}
+				carrier.carryResponseToChannel(textChannel, resultView);
 			}
 		}
 		catch (Exception e) {
 			String errorMessage = "에러 발생 : " + e.getMessage();
-			
-			textChannel.sendMessage(errorMessage).queue();
-			
 			log.error(errorMessage);
+			
+			View errorView = new ErrorView(e, makerID);
+
+			carrier.carryResponseToChannel(textChannel, errorView);
 		}
         
         
