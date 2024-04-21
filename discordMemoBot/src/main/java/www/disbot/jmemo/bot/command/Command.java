@@ -6,7 +6,7 @@ import www.disbot.jmemo.bot.command.exception.ArgsNumberDismatchException;
 import www.disbot.jmemo.bot.view.View;
 
 public interface Command {
-	public static final String PREFIX = "!";
+	public static final String PREFIX = "$";
 	
 	public String[] getArgNameArray();
 	
