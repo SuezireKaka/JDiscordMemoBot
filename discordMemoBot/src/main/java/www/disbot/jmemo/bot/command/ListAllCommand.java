@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import www.disbot.jmemo.bot.command.common.ArgsPacker;
+import www.disbot.jmemo.bot.command.exception.ArgsNumberDismatchException;
 import www.disbot.jmemo.bot.command.listAll.ClassScanner;
 import www.disbot.jmemo.bot.model.CommandVO;
 import www.disbot.jmemo.bot.view.ListAllView;
@@ -25,7 +26,13 @@ public class ListAllCommand implements Command {
 	}
 	
 	@Override
-	public View command(Map<String, String> argsMap) {
+	public View command(Map<String, String> argsMap) throws ArgsNumberDismatchException {
+		if (argsMap.size() != ARGS_NAME_ARRAY.length) {
+			throw new ArgsNumberDismatchException(
+					argsMap.values().toArray(new String[0]),
+					ARGS_NAME_ARRAY);
+		}
+		
 		ClassScanner scanner = new ClassScanner();
 		
 		Package pack = this.getClass().getPackage();

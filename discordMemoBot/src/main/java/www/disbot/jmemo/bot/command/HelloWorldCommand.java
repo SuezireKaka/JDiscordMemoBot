@@ -28,6 +28,7 @@ public class HelloWorldCommand implements Command {
 					argsMap.values().toArray(new String[0]),
 					ARGS_NAME_ARRAY);
 		}
+		
 		HelloWorldVO result = new HelloWorldVO("Hello, world!");
 		
 		return new HelloWorldView(result);

@@ -3,6 +3,7 @@ package www.disbot.jmemo.bot.listener;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
@@ -25,14 +26,14 @@ public class GuildMemberJoinListener extends ListenerAdapter {
 	
 	@Override
 	public void onGuildMemberJoin(GuildMemberJoinEvent event) {
-		User user = event.getUser();
+		User newUser = event.getUser();
         TextChannel textChannel = event.getGuild().getTextChannelById(mainChannelID);
         
-        log.info("get user join : " + user.getName());
-        
+        log.info("get member join : " + newUser.getGlobalName());
+        log.info("whose username is : " + newUser.getName());
         
 		try {
-			View resultView = controller.execute(user);
+			View resultView = controller.execute(newUser);
 			
 			if (resultView != null) {
 				carrier.carryResponseToChannel(textChannel, resultView);
