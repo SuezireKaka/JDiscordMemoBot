@@ -29,9 +29,7 @@ public class ListAllView extends DiscordView {
 				.map(CommandVO::toString)
 				.collect(Collectors.toList());
 		
-		List<String> result = rearrangeWithDiscordLimit(mappedVOList);
-		
-		return result;
+		return rearrangeWithDiscordLimit(mappedVOList);
 	}
 
 	@Override

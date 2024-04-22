@@ -22,7 +22,7 @@ public class HelloWorldCommand implements Command {
 	}
 	
 	@Override
-	public View command(Map<String, String> argsMap) throws ArgsNumberDismatchException {
+	public View command(Map<String, String> argsMap) throws Exception {
 		if (argsMap.size() != ARGS_NAME_ARRAY.length) {
 			throw new ArgsNumberDismatchException(
 					argsMap.values().toArray(new String[0]),
