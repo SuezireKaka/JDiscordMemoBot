@@ -9,7 +9,7 @@ import www.disbot.jmemo.bot.view.View;
 
 @Slf4j
 public class ResponseCarrier {
-	public void carryResponseToChannel(TextChannel textChannel, View resultView) {
+	public void carryResponseToChannel(TextChannel textChannel, View resultView) throws Exception {
 		resultView.initEmbed();
 		
 		List<String> resultTextList = resultView.textify();
@@ -27,6 +27,11 @@ public class ResponseCarrier {
 		
 		View errorView = new ErrorView(e, makerID);
 
-		carryResponseToChannel(textChannel, errorView);
+		try {
+			carryResponseToChannel(textChannel, errorView);
+		}
+		catch (Exception fatalError) {
+			fatalError.printStackTrace();
+		}
 	}
 }

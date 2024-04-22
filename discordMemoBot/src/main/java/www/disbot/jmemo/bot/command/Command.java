@@ -10,5 +10,5 @@ public interface Command {
 	
 	public String[] getArgNameArray();
 	
-	public View command(Map<String, String> argsMap) throws ArgsNumberDismatchException;
+	public View command(Map<String, String> argsMap) throws Exception;
 }

@@ -18,7 +18,9 @@ public abstract class DiscordView implements View {
 		String lemma = "";
 		
 		for (String curString : mappedVOList) {
-			String sample = lemma + LIST_SEPERATOR + curString;
+			String sample = lemma.length() == 0
+					? curString
+					: lemma + LIST_SEPERATOR + curString;
 			
 			if (sample.length() > MAX_ONE_VALUE_LENGTH) {
 				result.add(lemma);

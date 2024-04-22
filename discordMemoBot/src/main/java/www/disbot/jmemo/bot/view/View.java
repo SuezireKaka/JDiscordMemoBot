@@ -11,6 +11,8 @@ public interface View {
 	public static final String UNDERLINE = "__%s__";
 	public static final String CANCEL = "~~%s~~";
 	
+	public static final String SPACE = " ";
+	
 	public static final String OMIT_SUFFIX = "(...";
 	public static final String OMIT_PREFIX = "...)";
 	
@@ -28,5 +30,5 @@ public interface View {
 	
 	public List<String> textify();
 	
-	public MessageEmbed closeWith(String value); // 이거 타입명 정할 때 전략패턴 쓰면 좋을 듯
+	public MessageEmbed closeWith(String value) throws Exception; // 이거 타입명 정할 때 전략패턴 쓰면 좋을 듯
 }
