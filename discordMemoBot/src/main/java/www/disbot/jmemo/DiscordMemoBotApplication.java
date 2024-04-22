@@ -35,7 +35,7 @@ public class DiscordMemoBotApplication {
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
                 .addEventListeners(
                 		new MessageListener(makerDiscordID),
-                		new GuildMemberJoinListener(botChannelID))
+                		new GuildMemberJoinListener(makerDiscordID, botChannelID))
                 .build();
 	}
 

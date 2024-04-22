@@ -55,12 +55,7 @@ public class MessageListener extends ListenerAdapter {
 			}
 		}
 		catch (Exception e) {
-			String errorMessage = "에러 발생 : " + e.getMessage();
-			log.error(errorMessage);
-			
-			View errorView = new ErrorView(e, makerID);
-
-			carrier.carryResponseToChannel(textChannel, errorView);
+			carrier.carryErrorToChannel(textChannel, e, makerID);
 		}
         
         
