@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import www.disbot.jmemo.bot.command.Command;
-import www.disbot.jmemo.bot.command.exception.ArgsNumberDismatchException;
+import www.disbot.jmemo.bot.exception.ArgsNumberDismatchException;
 
 public class ArgsPacker<C extends Command> {
 	public static final String SEPERATOR = "/";

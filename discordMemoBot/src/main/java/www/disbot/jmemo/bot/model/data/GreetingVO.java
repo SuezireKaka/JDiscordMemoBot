@@ -1,4 +1,4 @@
-package www.disbot.jmemo.bot.model;
+package www.disbot.jmemo.bot.model.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @EqualsAndHashCode
-public class HelloWorldVO {
-	private String message;
+public class GreetingVO {
+	private String effectiveName;
+	private String avatarUrl;
+	private boolean isBot;
 }

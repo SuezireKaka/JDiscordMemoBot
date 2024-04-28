@@ -3,9 +3,11 @@ package www.disbot.jmemo.bot.command;
 import java.util.Map;
 
 import www.disbot.jmemo.bot.command.common.ArgsPacker;
-import www.disbot.jmemo.bot.command.exception.ArgsNumberDismatchException;
-import www.disbot.jmemo.bot.model.HelloWorldVO;
-import www.disbot.jmemo.bot.view.HelloWorldView;
+import www.disbot.jmemo.bot.exception.ArgsNumberDismatchException;
+import www.disbot.jmemo.bot.model.data.HelloWorldVO;
+import www.disbot.jmemo.bot.model.discord.DiscordContents;
+import www.disbot.jmemo.bot.model.discord.HelloWorldParser;
+import www.disbot.jmemo.bot.view.CommandResultView;
 import www.disbot.jmemo.bot.view.View;
 
 public class HelloWorldCommand implements Command {
@@ -31,6 +33,13 @@ public class HelloWorldCommand implements Command {
 		
 		HelloWorldVO result = new HelloWorldVO("Hello, world!");
 		
-		return new HelloWorldView(result);
+		DiscordContents contents = new DiscordContents(new HelloWorldParser(result));
+	   	
+		contents.parse();
+		
+	   	return CommandResultView.builder()
+	   			.title(ListAllCommand.USAGE)
+	   			.contents(contents)
+	   			.build();
 	}	
 }

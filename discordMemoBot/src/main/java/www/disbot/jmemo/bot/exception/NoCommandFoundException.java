@@ -1,4 +1,4 @@
-package www.disbot.jmemo.bot.command.exception;
+package www.disbot.jmemo.bot.exception;
 
 import www.disbot.jmemo.bot.command.common.ArgsPacker;
 

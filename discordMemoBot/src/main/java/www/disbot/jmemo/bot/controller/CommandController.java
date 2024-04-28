@@ -6,14 +6,15 @@ import www.disbot.jmemo.bot.command.Command;
 import www.disbot.jmemo.bot.command.HelloWorldCommand;
 import www.disbot.jmemo.bot.command.ListAllCommand;
 import www.disbot.jmemo.bot.command.common.ArgsPacker;
-import www.disbot.jmemo.bot.command.exception.NoCommandFoundException;
+import www.disbot.jmemo.bot.exception.NoCommandFoundException;
+import www.disbot.jmemo.bot.model.discord.CommandListParser;
+import www.disbot.jmemo.bot.model.discord.DiscordContents;
 import www.disbot.jmemo.bot.view.View;
 
 public class CommandController {
 	
 	public View execute(String key, String[] args) throws Exception {
 		Map<String, String> packedArgs;
-		
 		
 		if (key.equalsIgnoreCase(HelloWorldCommand.COMMAND)
 				&& args.length == new HelloWorldCommand().getArgNameArray().length) {

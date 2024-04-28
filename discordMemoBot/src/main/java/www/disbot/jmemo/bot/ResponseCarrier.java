@@ -3,6 +3,7 @@ package www.disbot.jmemo.bot;
 import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
+import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import www.disbot.jmemo.bot.view.ErrorView;
 import www.disbot.jmemo.bot.view.View;
@@ -10,13 +11,13 @@ import www.disbot.jmemo.bot.view.View;
 @Slf4j
 public class ResponseCarrier {
 	public void carryResponseToChannel(TextChannel textChannel, View resultView) throws Exception {
-		resultView.initEmbed();
+		resultView.init();
 		
-		List<String> resultTextList = resultView.textify();
+		List<MessageEmbed> resultEmbedList = resultView.close();
 		
-		for (String text : resultTextList) {
+		for (MessageEmbed embed : resultEmbedList) {
 			textChannel.sendMessage("")
-				.setEmbeds(resultView.closeWith(text))
+				.setEmbeds(embed)
 				.queue();
 		}
 	}

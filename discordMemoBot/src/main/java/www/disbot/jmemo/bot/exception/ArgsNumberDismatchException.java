@@ -1,4 +1,4 @@
-package www.disbot.jmemo.bot.command.exception;
+package www.disbot.jmemo.bot.exception;
 
 public class ArgsNumberDismatchException extends Exception {
 	private static final long serialVersionUID = 1L;

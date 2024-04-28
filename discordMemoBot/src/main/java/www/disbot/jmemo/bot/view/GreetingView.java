@@ -6,7 +6,8 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import net.dv8tion.jda.api.entities.MessageEmbed;
-import www.disbot.jmemo.bot.model.GreetingVO;
+import www.disbot.jmemo.bot.model.data.GreetingVO;
+import www.disbot.jmemo.bot.model.discord.DiscordContents;
 import www.disbot.jmemo.bot.view.user.AvatarCatcher;
 
 @Getter
@@ -26,7 +27,7 @@ public class GreetingView extends DiscordView {
 	private GreetingVO rawVO;
 
 	@Override
-	public void initEmbed() {
+	public void init() {
 		setEmbedBuilder(this.getEmbedBuilder()
 				.setTitle(GREETINNG_TITLE.formatted(
 						rawVO.getEffectiveName(),
@@ -42,30 +43,24 @@ public class GreetingView extends DiscordView {
 	}
 
 	@Override
-	public List<String> textify() {
-		List<String> mappedVOList = new ArrayList<>();
-		mappedVOList.add(String.join(LIST_SEPERATOR,
-				rawVO.getAvatarUrl(), rawVO.getEffectiveName()));
-		
-		return rearrangeWithDiscordLimit(mappedVOList);
-	}
-
-	@Override
-	public MessageEmbed closeWith(String value) throws Exception {
-		String[] userInfoArray = value.split(LIST_SEPERATOR);
-		String url = userInfoArray[0];
-		String nick = userInfoArray[1];
+	public List<MessageEmbed> close() throws Exception {
+		String url = rawVO.getAvatarUrl();
+		String nick = rawVO.getEffectiveName();
 		
 		AvatarCatcher catcher = new AvatarCatcher();
 		
-		return this.getEmbedBuilder()
+		List<MessageEmbed> result = new ArrayList<>();
+		
+		result.add(this.getEmbedBuilder()
 				.setImage(url)
 				.addField(NEW_MEMBER
 						.formatted(rawVO.isBot()
 								? BOT_TERM_OF_ADDRESS
 								: PERSON_TERM_OF_ADDRESS)
 						, nick, false)
-				.build();
+				.build());
+		
+		return result;
 	}
 
 }

@@ -2,7 +2,7 @@ package www.disbot.jmemo.bot.command;
 
 import java.util.Map;
 
-import www.disbot.jmemo.bot.command.exception.ArgsNumberDismatchException;
+import www.disbot.jmemo.bot.exception.ArgsNumberDismatchException;
 import www.disbot.jmemo.bot.view.View;
 
 public interface Command {

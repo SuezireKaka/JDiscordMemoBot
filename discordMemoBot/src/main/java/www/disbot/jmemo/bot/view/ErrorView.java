@@ -1,18 +1,13 @@
 package www.disbot.jmemo.bot.view;
 
 import java.awt.Color;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Value;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import net.dv8tion.jda.api.entities.MessageEmbed;
-import www.disbot.jmemo.bot.model.CommandVO;
-import www.disbot.jmemo.bot.model.HelloWorldVO;
+import www.disbot.jmemo.bot.model.data.HelloWorldVO;
 
 @Getter
 @AllArgsConstructor
@@ -23,33 +18,32 @@ public class ErrorView extends DiscordView {
 	
 	public static final String ERROR_FIELD_TYPENAME = "mention";
 	
+	public static final String ERROR_ALARM = "일단 모르겠고 제작자를 호출합니다: ";
+	
 	private Exception e;
 	
 	private String makerUsername;
 	
 	@Override
-	public void initEmbed() {
+	public void init() {
 		setEmbedBuilder(this.getEmbedBuilder()
 				.setTitle(ERROR_TITLE)
 				.setDescription(e.getMessage())
 				.setColor(ERROR_COLOR));
 	}
-	
-	@Override
-	public List<String> textify() {
-		List<String> stackTraceTextList = Arrays.asList(
-				new String[]{"일단 모르겠고 제작자를 호출합니다: "
-						+ MENTION_FORMAT.formatted(makerUsername)});
-		
-		return rearrangeWithDiscordLimit(stackTraceTextList);
-	}
 
 	@Override
-	public MessageEmbed closeWith(String value) {
+	public List<MessageEmbed> close() {
 		String type = HelloWorldVO.class.getDeclaredFields()[0].getName();
 		
-		return this.getEmbedBuilder()
-				.addField(type, value, false)
-				.build();
+		List<MessageEmbed> result = new ArrayList<>();
+		
+		result.add(this.getEmbedBuilder()
+				.addField(type,
+					ERROR_ALARM + MENTION_FORMAT.formatted(makerUsername),
+					false)
+				.build());
+		
+		return result;
 	}
 }

@@ -3,7 +3,7 @@ package www.disbot.jmemo.bot.command;
 import java.util.Arrays;
 import java.util.Map;
 
-import www.disbot.jmemo.bot.model.GreetingVO;
+import www.disbot.jmemo.bot.model.data.GreetingVO;
 import www.disbot.jmemo.bot.view.GreetingView;
 import www.disbot.jmemo.bot.view.View;
 

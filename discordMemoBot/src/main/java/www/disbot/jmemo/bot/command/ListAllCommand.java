@@ -6,10 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 import www.disbot.jmemo.bot.command.common.ArgsPacker;
-import www.disbot.jmemo.bot.command.exception.ArgsNumberDismatchException;
 import www.disbot.jmemo.bot.command.listAll.ClassScanner;
-import www.disbot.jmemo.bot.model.CommandVO;
-import www.disbot.jmemo.bot.view.ListAllView;
+import www.disbot.jmemo.bot.exception.ArgsNumberDismatchException;
+import www.disbot.jmemo.bot.model.data.CommandVO;
+import www.disbot.jmemo.bot.model.discord.CommandListParser;
+import www.disbot.jmemo.bot.model.discord.DiscordContents;
+import www.disbot.jmemo.bot.view.CommandResultView;
 import www.disbot.jmemo.bot.view.View;
 
 public class ListAllCommand implements Command {
@@ -52,7 +54,14 @@ public class ListAllCommand implements Command {
 			}
 	   	}
 	   	
-	   	return new ListAllView(result);
+	   	DiscordContents contents = new DiscordContents(new CommandListParser(result));
+	   	
+	   	contents.parse();
+	   	
+	   	return CommandResultView.builder()
+	   			.title(ListAllCommand.USAGE)
+	   			.contents(contents)
+	   			.build();
 	}
 
 }

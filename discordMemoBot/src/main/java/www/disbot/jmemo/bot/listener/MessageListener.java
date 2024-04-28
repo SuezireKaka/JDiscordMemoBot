@@ -13,6 +13,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import www.disbot.jmemo.bot.ResponseCarrier;
 import www.disbot.jmemo.bot.command.common.ArgsPacker;
 import www.disbot.jmemo.bot.controller.CommandController;
+import www.disbot.jmemo.bot.model.discord.DiscordContents;
 import www.disbot.jmemo.bot.view.ErrorView;
 import www.disbot.jmemo.bot.view.View;
 
@@ -47,7 +48,7 @@ public class MessageListener extends ListenerAdapter {
         String commandKey = messageArray[0];
         String[] commandArgs = Arrays.copyOfRange(messageArray, 1, messageArray.length);
         
-		try {
+		try {			
 			View resultView = controller.execute(commandKey, commandArgs);
 			
 			if (resultView != null) {
