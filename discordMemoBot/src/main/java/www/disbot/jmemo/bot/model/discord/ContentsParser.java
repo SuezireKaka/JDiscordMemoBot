@@ -17,4 +17,6 @@ public interface ContentsParser {
 	}
 	
 	public List<List<Pair<ParseType, String>>> parse() throws Exception;
+	
+	public List<Pair<ParseType, String>> parseLemma();
 }

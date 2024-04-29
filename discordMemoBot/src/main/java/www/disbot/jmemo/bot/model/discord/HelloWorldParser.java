@@ -1,6 +1,5 @@
 package www.disbot.jmemo.bot.model.discord;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,12 +8,11 @@ import www.disbot.jmemo.bot.model.common.Pair;
 import www.disbot.jmemo.bot.model.data.HelloWorldVO;
 
 @AllArgsConstructor
-public class HelloWorldParser implements ContentsParser {
+public class HelloWorldParser extends DiscordParser {
 	private HelloWorldVO vo;
 	
 	@Override
-	public List<List<Pair<ParseType, String>>> parse() throws Exception {
-		List<List<Pair<ParseType, String>>> result = new ArrayList<>();
+	public List<Pair<ParseType, String>> parseLemma() {
 		
 		List<Pair<ParseType, String>> lemma = new ArrayList<>();
 
@@ -26,9 +24,7 @@ public class HelloWorldParser implements ContentsParser {
 		
 		lemma.add(key);
 		lemma.add(val);
-		
-		result.add(lemma);
-		
-		return result;
+
+		return lemma;
 	}
 }
