@@ -1,4 +1,4 @@
-package www.disbot.jmemo.bot.view;
+package www.disbot.jmemo.bot.view.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,10 +7,11 @@ import lombok.Builder;
 import lombok.Getter;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.MessageEmbed;
-import www.disbot.jmemo.bot.command.ListAllCommand;
-import www.disbot.jmemo.bot.model.common.Pair;
+import www.disbot.jmemo.bot.command.impl.ListAllCommand;
+import www.disbot.jmemo.bot.model.structure.Pair;
 import www.disbot.jmemo.bot.parser.DiscordContents;
 import www.disbot.jmemo.bot.parser.ContentsParser.ParseType;
+import www.disbot.jmemo.bot.view.DiscordView;
 
 @Getter
 @Builder

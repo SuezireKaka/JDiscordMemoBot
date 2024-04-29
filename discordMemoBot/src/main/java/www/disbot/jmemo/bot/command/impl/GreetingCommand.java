@@ -1,11 +1,12 @@
-package www.disbot.jmemo.bot.command;
+package www.disbot.jmemo.bot.command.impl;
 
 import java.util.Arrays;
 import java.util.Map;
 
+import www.disbot.jmemo.bot.command.Command;
 import www.disbot.jmemo.bot.model.data.GreetingVO;
-import www.disbot.jmemo.bot.view.GreetingView;
 import www.disbot.jmemo.bot.view.View;
+import www.disbot.jmemo.bot.view.impl.GreetingView;
 
 public class GreetingCommand implements Command {
 	public static final String USAGE = "(새 유저 등장시)";

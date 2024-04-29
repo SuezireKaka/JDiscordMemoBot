@@ -1,4 +1,4 @@
-package www.disbot.jmemo.bot.command.common;
+package www.disbot.jmemo.bot.controller.args;
 
 import java.util.HashMap;
 import java.util.Map;

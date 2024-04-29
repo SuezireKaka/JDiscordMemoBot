@@ -5,7 +5,7 @@ import java.util.Map;
 
 import net.dv8tion.jda.api.entities.User;
 import www.disbot.jmemo.bot.command.Command;
-import www.disbot.jmemo.bot.command.GreetingCommand;
+import www.disbot.jmemo.bot.command.impl.GreetingCommand;
 import www.disbot.jmemo.bot.view.View;
 
 public class GreetingController {

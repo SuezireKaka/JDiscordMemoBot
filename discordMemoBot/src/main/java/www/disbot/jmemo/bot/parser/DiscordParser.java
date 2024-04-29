@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import www.disbot.jmemo.bot.exception.TooLongKeyStateException;
-import www.disbot.jmemo.bot.model.common.Pair;
+import www.disbot.jmemo.bot.model.structure.Pair;
 
 public abstract class DiscordParser implements ContentsParser {
 	@Override

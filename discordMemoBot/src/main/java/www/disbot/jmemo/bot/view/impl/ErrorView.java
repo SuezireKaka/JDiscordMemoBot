@@ -1,4 +1,4 @@
-package www.disbot.jmemo.bot.view;
+package www.disbot.jmemo.bot.view.impl;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import www.disbot.jmemo.bot.model.data.HelloWorldVO;
+import www.disbot.jmemo.bot.view.DiscordView;
 
 @Getter
 @AllArgsConstructor

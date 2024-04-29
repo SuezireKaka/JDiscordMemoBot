@@ -1,4 +1,4 @@
-package www.disbot.jmemo.bot.model.common;
+package www.disbot.jmemo.bot.model.structure;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

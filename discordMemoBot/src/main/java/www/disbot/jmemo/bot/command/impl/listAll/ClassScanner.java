@@ -1,4 +1,4 @@
-package www.disbot.jmemo.bot.command.listAll;
+package www.disbot.jmemo.bot.command.impl.listAll;
 
 import java.io.File;
 import java.io.IOException;

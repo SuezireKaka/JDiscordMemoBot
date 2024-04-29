@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import www.disbot.jmemo.bot.model.common.Pair;
+import www.disbot.jmemo.bot.model.structure.Pair;
 import www.disbot.jmemo.bot.parser.ContentsParser.ParseType;
 
 @Getter

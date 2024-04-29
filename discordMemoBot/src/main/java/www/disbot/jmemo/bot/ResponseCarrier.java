@@ -5,8 +5,8 @@ import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
-import www.disbot.jmemo.bot.view.ErrorView;
 import www.disbot.jmemo.bot.view.View;
+import www.disbot.jmemo.bot.view.impl.ErrorView;
 
 @Slf4j
 public class ResponseCarrier {

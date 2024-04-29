@@ -1,14 +1,15 @@
-package www.disbot.jmemo.bot.command;
+package www.disbot.jmemo.bot.command.impl;
 
 import java.util.Map;
 
-import www.disbot.jmemo.bot.command.common.ArgsPacker;
+import www.disbot.jmemo.bot.command.Command;
+import www.disbot.jmemo.bot.controller.args.ArgsPacker;
 import www.disbot.jmemo.bot.exception.ArgsNumberDismatchException;
 import www.disbot.jmemo.bot.model.data.HelloWorldVO;
 import www.disbot.jmemo.bot.parser.DiscordContents;
-import www.disbot.jmemo.bot.parser.HelloWorldParser;
-import www.disbot.jmemo.bot.view.CommandResultView;
+import www.disbot.jmemo.bot.parser.impl.HelloWorldParser;
 import www.disbot.jmemo.bot.view.View;
+import www.disbot.jmemo.bot.view.impl.CommandResultView;
 
 public class HelloWorldCommand implements Command {
 	public static final String COMMAND = Command.PREFIX + "hello";

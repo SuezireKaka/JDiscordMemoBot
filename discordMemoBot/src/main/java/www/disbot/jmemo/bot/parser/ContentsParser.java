@@ -2,7 +2,7 @@ package www.disbot.jmemo.bot.parser;
 
 import java.util.List;
 
-import www.disbot.jmemo.bot.model.common.Pair;
+import www.disbot.jmemo.bot.model.structure.Pair;
 
 public interface ContentsParser {
 	public static final String OMIT_SUFFIX = "(...";

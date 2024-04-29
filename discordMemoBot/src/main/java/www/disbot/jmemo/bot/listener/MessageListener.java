@@ -11,11 +11,11 @@ import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import www.disbot.jmemo.bot.ResponseCarrier;
-import www.disbot.jmemo.bot.command.common.ArgsPacker;
 import www.disbot.jmemo.bot.controller.CommandController;
+import www.disbot.jmemo.bot.controller.args.ArgsPacker;
 import www.disbot.jmemo.bot.parser.DiscordContents;
-import www.disbot.jmemo.bot.view.ErrorView;
 import www.disbot.jmemo.bot.view.View;
+import www.disbot.jmemo.bot.view.impl.ErrorView;
 
 @Slf4j
 @RequiredArgsConstructor
