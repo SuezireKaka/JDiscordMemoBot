@@ -23,6 +23,7 @@ public class RoleVO extends Entity implements GrantedAuthority {
 	private GroupVO provider;
 	private String name;
 	private String info;
+	private boolean isDefault;
 	
 	@Builder.Default
 	private List<GroupAct> allowedActList = new ArrayList<>();

@@ -3,7 +3,7 @@ create table t_role(
 	provider	char(4),
 	name		varchar(16),
 	info		varchar(200),
+	dflt		tinyint,
 	allow		char(2)
 );
-
-create index idx_provider on t_role(provider);
+create index idx_name_in_group on t_role(provider, name);

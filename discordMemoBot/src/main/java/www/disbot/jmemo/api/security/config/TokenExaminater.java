@@ -2,18 +2,14 @@ package www.disbot.jmemo.api.security.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.RequiredArgsConstructor;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.User;
-import www.disbot.jmemo.api.party.model.PartyVO;
 
 @Component
-@RequiredArgsConstructor
 public class TokenExaminater {
 	@Value("{discord.bot.token-prefix}")
 	private String tokenPrefix;
@@ -21,8 +17,8 @@ public class TokenExaminater {
 	@Value("{discord.bot.token}")
 	private String answerToken;
 	
-	@Autowired
-	private final PartyMapper partyMapper; 
+	//@Autowired
+	//private final PartyMapper partyMapper; 
 	
 	@Autowired
 	private JDA jda;
@@ -47,10 +43,12 @@ public class TokenExaminater {
 			.map(User::getName)
 			.complete();
 		
-		PartyVO partyDetails = partyMapper.findByUserName(userName);
+		return null;
 		
-		return new UsernamePasswordAuthenticationToken(
-				partyDetails, "", partyDetails.getAuthorities());
+		//PartyVO partyDetails = partyMapper.findByUserName(userName);
+		
+		//return new UsernamePasswordAuthenticationToken(
+		//		partyDetails, "", partyDetails.getAuthorities());
 	}
 
 	private String getUserID(String token) {
