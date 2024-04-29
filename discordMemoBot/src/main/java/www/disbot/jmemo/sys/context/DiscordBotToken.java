@@ -3,13 +3,14 @@ package www.disbot.jmemo.sys.context;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-@Component
-public class DiscordBotToken {
+import lombok.Getter;
 
+@Component
+@Getter
+public class DiscordBotToken {
     @Value("${discord.bot.token}")
     private String discordBotToken;
-
-    public String getDiscordBotToken() {
-        return discordBotToken;
-    }
+    
+    @Value("${discord.bot.token-prefix}")
+    private String tokenPrefix;
 }

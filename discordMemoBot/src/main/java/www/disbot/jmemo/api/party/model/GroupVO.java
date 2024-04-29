@@ -8,6 +8,8 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 public class GroupVO extends PartyVO {
+	private static final long serialVersionUID = 1L;
+	
 	private boolean isOpen;
 	private String introduce;
 }

@@ -26,6 +26,8 @@ public class MessageListener extends ListenerAdapter {
 	
 	@NonNull
 	private String makerID;
+	@NonNull
+	private String tokenPrefix;
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
