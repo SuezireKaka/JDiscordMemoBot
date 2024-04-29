@@ -1,4 +1,4 @@
-package www.disbot.jmemo.bot.model.discord;
+package www.disbot.jmemo.bot.parser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import www.disbot.jmemo.bot.model.common.Pair;
-import www.disbot.jmemo.bot.model.discord.ContentsParser.ParseType;
+import www.disbot.jmemo.bot.parser.ContentsParser.ParseType;
 
 @Getter
 @RequiredArgsConstructor

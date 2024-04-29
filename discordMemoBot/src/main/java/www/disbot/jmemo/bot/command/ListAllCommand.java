@@ -9,8 +9,8 @@ import www.disbot.jmemo.bot.command.common.ArgsPacker;
 import www.disbot.jmemo.bot.command.listAll.ClassScanner;
 import www.disbot.jmemo.bot.exception.ArgsNumberDismatchException;
 import www.disbot.jmemo.bot.model.data.CommandVO;
-import www.disbot.jmemo.bot.model.discord.CommandListParser;
-import www.disbot.jmemo.bot.model.discord.DiscordContents;
+import www.disbot.jmemo.bot.parser.CommandListParser;
+import www.disbot.jmemo.bot.parser.DiscordContents;
 import www.disbot.jmemo.bot.view.CommandResultView;
 import www.disbot.jmemo.bot.view.View;
 

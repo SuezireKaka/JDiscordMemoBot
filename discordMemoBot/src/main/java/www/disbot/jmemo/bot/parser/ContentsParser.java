@@ -1,4 +1,4 @@
-package www.disbot.jmemo.bot.model.discord;
+package www.disbot.jmemo.bot.parser;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package www.disbot.jmemo.bot.exception;
 
-import www.disbot.jmemo.bot.model.discord.ContentsParser;
+import www.disbot.jmemo.bot.parser.ContentsParser;
 
 public class TooLongKeyStateException extends Exception {
 	private static final long serialVersionUID = 1L;

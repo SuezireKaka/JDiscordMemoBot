@@ -5,8 +5,8 @@ import java.util.Map;
 import www.disbot.jmemo.bot.command.common.ArgsPacker;
 import www.disbot.jmemo.bot.exception.ArgsNumberDismatchException;
 import www.disbot.jmemo.bot.model.data.HelloWorldVO;
-import www.disbot.jmemo.bot.model.discord.DiscordContents;
-import www.disbot.jmemo.bot.model.discord.HelloWorldParser;
+import www.disbot.jmemo.bot.parser.DiscordContents;
+import www.disbot.jmemo.bot.parser.HelloWorldParser;
 import www.disbot.jmemo.bot.view.CommandResultView;
 import www.disbot.jmemo.bot.view.View;
 

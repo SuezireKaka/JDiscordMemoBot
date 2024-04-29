@@ -7,8 +7,8 @@ import www.disbot.jmemo.bot.command.HelloWorldCommand;
 import www.disbot.jmemo.bot.command.ListAllCommand;
 import www.disbot.jmemo.bot.command.common.ArgsPacker;
 import www.disbot.jmemo.bot.exception.NoCommandFoundException;
-import www.disbot.jmemo.bot.model.discord.CommandListParser;
-import www.disbot.jmemo.bot.model.discord.DiscordContents;
+import www.disbot.jmemo.bot.parser.CommandListParser;
+import www.disbot.jmemo.bot.parser.DiscordContents;
 import www.disbot.jmemo.bot.view.View;
 
 public class CommandController {
