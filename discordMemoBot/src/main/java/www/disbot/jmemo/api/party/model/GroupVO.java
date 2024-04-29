@@ -8,6 +8,6 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 public class GroupVO extends PartyVO {
-	private String introduce;
 	private boolean isOpen;
+	private String introduce;
 }
