@@ -10,7 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import www.disbot.jmemo.api.framework.model.Entity;
-import www.disbot.jmemo.api.party.model.act.GroupAct;
+import www.disbot.jmemo.api.party.model.act.Act;
 
 @Getter
 @SuperBuilder
@@ -26,7 +26,7 @@ public class RoleVO extends Entity implements GrantedAuthority {
 	private boolean isDefault;
 	
 	@Builder.Default
-	private List<GroupAct> allowedActList = new ArrayList<>();
+	private List<Act> allowedActList = new ArrayList<>();
 
 	@Override
 	public String getAuthority() {

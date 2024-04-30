@@ -8,12 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SignUpResultDto {
-
+public class SignUpResultDTO {
 	private boolean success;
-
-	private int code;
-
 	private String msg;
-
 }

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="www.disbot.jmemo.api.party.mapper.PartyMapper">
+	<resultMap id="rmPartyVO" extends="nsEntity.rmTimeEntity"
+		type="www.wonder.vatory.party.model.PartyVO">
+		<result property="name" column="name" />
+		<discriminator javaType="String" column="discrim">
+			<case value="U" resultMap="rmUserVO" />
+         	<case value="G" resultMap="rmGroupVO" />
+		</discriminator>
+	</resultMap>
+	
+	<resultMap id="rmGroupVO" extends="rmPartyVO"
+		type="www.disbot.jmemo.api.party.model.GroupVO">
+		<result property="isOpen" column="open" />
+		<result property="introduce" column="intro" />
+	</resultMap>
+	
+	<resultMap id="rmUserVO" extends="rmPartyVO"
+		type="www.disbot.jmemo.api.party.model.UserVO">
+		<collection property="roleList" columnPrefix="r_"
+			resultMap="rmRoleVO">
+		</collection>
+	</resultMap>
+	
+	<resultMap id="rmRoleVO" extends="nsEntity.rmEntity"
+		type="www.disbot.jmemo.api.party.model.RoleVO">
+		<result property="name" column="name" />
+		<result property="info" column="info" />
+		<result property="isDefault" column="dflt" />
+		<association property="provider" columnPrefix="prov_"
+			resultMap="rmGroupVO"/>
+		<collection property="allowedActsList" column="allow"/>
+	</resultMap>
+
+	<!-- 	public PartyVO getUserByName(String name); -->
+	<select id="getUserByName" resultMap="rmPartyVO">
+		select u.*,
+	        	r.id r_id, r.name r_name, r.info r_info, r.dflt r_dflt, r.allow r_allow,
+	        	prov.id r_prov_id, prov.name r_prov_name, prov.discrim r_prov_discrim,
+	    	    g.open r_prov_open, g.intro r_prov_intro
+		  from t_party u
+		  left outer join rel_party_role rel
+		    on u.id = rel.party
+		  left outer join t_role r
+		    on rel.role = r.id
+		  left outer join t_party prov
+		    on r.provider = prov.id
+		  left outer join t_group g
+		    on r.provider = g.id
+		 where u.discrim = 'U'
+		   and u.name = #{name};
+	</select>
+
+	<!-- public boolean createUser(@Param("dto") SignUpDTO dto); -->
+	<insert id="createUser">
+		<selectKey keyProperty="id" resultType="String" order="BEFORE">
+			select NEXT_PK('s_party')
+		</selectKey>
+		
+		insert into t_party(id, discrim, name)
+		values(#{id}, 'U', #{dto.name});
+	</insert>
+</mapper>
