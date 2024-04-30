@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 
 import lombok.Getter;
 
-@Component
 @Getter
+@Component
 public class DiscordBotToken {
     @Value("${discord.bot.token}")
     private String discordBotToken;
