@@ -4,6 +4,8 @@ import lombok.Builder;
 import lombok.Getter;
 
 public class BusinessException extends RuntimeException {
+	private static final long serialVersionUID = 1L;
+	
 	@Getter
 	private final ErrorCode errorCode;
 

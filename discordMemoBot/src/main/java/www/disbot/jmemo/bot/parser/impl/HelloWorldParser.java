@@ -6,9 +6,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import www.disbot.jmemo.bot.model.data.HelloWorldVO;
 import www.disbot.jmemo.bot.model.structure.Pair;
-import www.disbot.jmemo.bot.parser.ContentsParser;
 import www.disbot.jmemo.bot.parser.DiscordParser;
-import www.disbot.jmemo.bot.parser.ContentsParser.ParseType;
 
 @AllArgsConstructor
 public class HelloWorldParser extends DiscordParser {

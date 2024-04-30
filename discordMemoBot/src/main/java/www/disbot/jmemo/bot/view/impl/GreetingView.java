@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import www.disbot.jmemo.bot.model.data.GreetingVO;
-import www.disbot.jmemo.bot.parser.DiscordContents;
 import www.disbot.jmemo.bot.view.DiscordView;
 import www.disbot.jmemo.bot.view.user.AvatarCatcher;
 

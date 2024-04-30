@@ -4,12 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
-import www.disbot.jmemo.bot.exception.TooLongKeyStateException;
 import www.disbot.jmemo.bot.model.data.CommandVO;
 import www.disbot.jmemo.bot.model.structure.Pair;
-import www.disbot.jmemo.bot.parser.ContentsParser;
 import www.disbot.jmemo.bot.parser.DiscordParser;
-import www.disbot.jmemo.bot.parser.ContentsParser.ParseType;
 
 @AllArgsConstructor
 public class CommandListParser extends DiscordParser {

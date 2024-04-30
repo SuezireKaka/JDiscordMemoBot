@@ -2,12 +2,10 @@ package www.disbot.jmemo.bot.parser;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import www.disbot.jmemo.bot.model.structure.Pair;
 import www.disbot.jmemo.bot.parser.ContentsParser.ParseType;
 
