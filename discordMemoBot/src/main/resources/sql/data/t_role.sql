@@ -1,17 +1,21 @@
-create table t_role(
-	id			char(4) primary key,
-	provider	char(4),
-	name		varchar(16),
-	info		varchar(200),
-	dflt		tinyint,
-	allow		char(2)
-);
-create index idx_by_provider_name on t_role(provider, name);
-
 insert into t_role(id, provider, name, info, dflt, allow)
 select NEXT_PK('s_role') /*'0000'*/ id,
             '0000' provider,
             'member' name,
-            '' info,
+            'JMemo를 이용하기 위한 기본적인 역할' info,
             1 dflt,
-            'PM' allow
+            'PM' allow;
+
+insert into rel_party_role(party, role)
+values('0001', '0000');
+
+insert into t_role(id, provider, name, info, dflt, allow)
+select NEXT_PK('s_role') /*'0001'*/ id,
+            '0000' provider,
+            'developer' name,
+            'JMemo의 모든 것을 개발하는 역할' info,
+            0 dflt,
+            'SM' allow;
+
+insert into rel_party_role(party, role)
+values('0001', '0001');

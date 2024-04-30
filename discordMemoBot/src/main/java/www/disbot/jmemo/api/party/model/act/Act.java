@@ -13,10 +13,11 @@ import lombok.RequiredArgsConstructor;
 @JsonFormat(shape = Shape.OBJECT)
 @JsonIgnoreProperties({"range", "type"})
 public enum Act {
+	SM(Range.System, Type.Manage),
+	
 	PM(Range.Private, Type.Manage),
 	
 	GM(Range.Group, Type.Manage),
-	GD(Range.Group, Type.Delete),
 	GP(Range.Group, Type.Proxy),
 	GA(Range.Group, Type.Announce),
 	

@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum Range {
-	Group("그룹"), Role("역할"), User("유저");
+	System("시스템 전체"), Group("그룹"), Role("역할"), User("유저"), Private("개인 정보");
 	
 	private String str;
 }

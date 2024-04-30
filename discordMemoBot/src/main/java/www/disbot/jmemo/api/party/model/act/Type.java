@@ -8,7 +8,6 @@ import lombok.Getter;
 public enum Type {
 	Create("를 만들 수 있습니다"),
 	Manage("를 관리할 수 있습니다"),
-	Delete("를 삭제할 수 있습니다"),
 	
 	Proxy("을 대표해 메모를 남길 수 있습니다"),
 	Announce("의 멤버들에게 공지할 수 있습니다"),
