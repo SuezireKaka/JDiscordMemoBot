@@ -6,4 +6,4 @@ create table t_role(
 	dflt		tinyint,
 	allow		char(2)
 );
-create index idx_name_in_group on t_role(provider, name);
+create index idx_by_provider_name on t_role(provider, name);
