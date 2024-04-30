@@ -1,13 +1,12 @@
 package www.disbot.jmemo.api.security.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import jakarta.servlet.http.HttpServletRequest;
-import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.User;
+import www.disbot.jmemo.DiscordMemoBotApplication;
 
 @Component
 public class TokenExaminater {
@@ -19,9 +18,6 @@ public class TokenExaminater {
 	
 	//@Autowired
 	//private final PartyMapper partyMapper; 
-	
-	@Autowired
-	private JDA jda;
 	
 	public String resolveToken(HttpServletRequest request) {
         String requestHeader = request.getHeader("x-auth-token");
@@ -39,7 +35,7 @@ public class TokenExaminater {
 	}
 
 	public Authentication getAuthentication(String token) {
-		String userName = jda.retrieveUserById(getUserID(token))
+		String userName = DiscordMemoBotApplication.main.retrieveUserById(getUserID(token))
 			.map(User::getName)
 			.complete();
 		
