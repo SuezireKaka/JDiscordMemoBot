@@ -12,7 +12,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @JsonFormat(shape = Shape.OBJECT)
 @JsonIgnoreProperties({"range", "type"})
-public enum GroupAct {
+public enum Act {
+	PM(Range.Private, Type.Manage),
+	
 	GM(Range.Group, Type.Manage),
 	GD(Range.Group, Type.Delete),
 	GP(Range.Group, Type.Proxy),
