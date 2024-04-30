@@ -19,7 +19,7 @@ public interface View {
 	
 	public static final Color SUCCESS_COLOR = new Color(52, 200, 31);
 	
-	public void init();
+	public <T> void init(Class<T> cls) throws Exception;
 	
 	public List<MessageEmbed> close() throws Exception;
 }

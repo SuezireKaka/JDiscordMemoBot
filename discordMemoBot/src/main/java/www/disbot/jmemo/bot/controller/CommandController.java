@@ -16,13 +16,16 @@ public class CommandController {
 	public View execute(String key, String[] args) throws Exception {
 		Map<String, String> packedArgs;
 		
+		View result = null;
+		
 		if (key.equalsIgnoreCase(HelloWorldCommand.COMMAND)
 				&& args.length == new HelloWorldCommand().getArgNameArray().length) {
 			
             packedArgs = new ArgsPacker<HelloWorldCommand>()
             		.mapPack(new HelloWorldCommand(), args);
             
-            return new HelloWorldCommand().command(packedArgs);
+            result = new HelloWorldCommand().command(packedArgs);
+            result.init(HelloWorldCommand.class);
         }
 		
 		else if (key.equalsIgnoreCase(ListAllCommand.COMMAND)
@@ -31,13 +34,13 @@ public class CommandController {
         	packedArgs = new ArgsPacker<ListAllCommand>()
                 	.mapPack(new ListAllCommand(), args);
 
-            return new ListAllCommand().command(packedArgs);
+        	result = new ListAllCommand().command(packedArgs);
+        	result.init(ListAllCommand.class);
         }
-		
-		if (key.startsWith(Command.PREFIX) && ! key.equals(Command.PREFIX)) {
+		else if (key.startsWith(Command.PREFIX) && ! key.equals(Command.PREFIX)) {
 			throw new NoCommandFoundException(key, args);
 		}
 		
-		return null;
+		return result;
 	}
 }

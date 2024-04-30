@@ -28,7 +28,7 @@ public class GreetingView extends DiscordView {
 	private GreetingVO rawVO;
 
 	@Override
-	public void init() {
+	public <T> void init(Class<T> cls) {
 		setEmbedBuilder(this.getEmbedBuilder()
 				.setTitle(GREETINNG_TITLE.formatted(
 						rawVO.getEffectiveName(),

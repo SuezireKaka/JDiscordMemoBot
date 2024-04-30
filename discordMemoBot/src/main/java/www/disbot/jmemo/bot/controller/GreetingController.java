@@ -22,7 +22,10 @@ public class GreetingController {
 		packedArgs.put(requireArgsNameArray[2], newUser.getEffectiveAvatarUrl());
 		packedArgs.put(requireArgsNameArray[3], String.valueOf(newUser.isBot()));
 		
-		return command.command(packedArgs);
+		View result = command.command(packedArgs);
+		result.init(null);
+		
+		return result;
 	}
 
 }

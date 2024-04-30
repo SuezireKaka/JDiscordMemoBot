@@ -26,7 +26,7 @@ public class ErrorView extends DiscordView {
 	private String makerUsername;
 	
 	@Override
-	public void init() {
+	public <T> void init(Class<T> cls) {
 		setEmbedBuilder(this.getEmbedBuilder()
 				.setTitle(ERROR_TITLE)
 				.setDescription(e.getMessage())

@@ -20,10 +20,12 @@ public class CommandResultView extends DiscordView {
 	private DiscordContents contents;
 	
 	@Override
-	public void init() {
+	public <T> void init(Class<T> cls) throws Exception {
+		String usage = (String) cls.getField("USAGE").get("");
+		
 		setEmbedBuilder(this.getEmbedBuilder()
-				.setTitle(ListAllCommand.USAGE)
-				.setDescription(ListAllCommand.USAGE + RESULT_TITLE_SUFFIX)
+				.setTitle(usage)
+				.setDescription(usage + RESULT_TITLE_SUFFIX)
 				.setColor(SUCCESS_COLOR));
 	}
 
