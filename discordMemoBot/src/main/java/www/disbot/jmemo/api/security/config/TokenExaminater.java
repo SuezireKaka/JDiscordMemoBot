@@ -15,6 +15,9 @@ public class TokenExaminater {
 	@Value("{discord.bot.token-prefix}")
 	private String tokenPrefix;
 	
+	@Value("{discord.bot.token-seperator}")
+	private String tokenSeperator;
+	
 	@Value("{discord.bot.token}")
 	private String answerToken;
 	
@@ -25,7 +28,9 @@ public class TokenExaminater {
         String requestHeader = request.getHeader("x-auth-token");
         String token = null;
 
-        if (requestHeader != null && requestHeader.startsWith(tokenPrefix)) {
+        if (requestHeader != null
+        		&& requestHeader.startsWith(tokenPrefix)
+        		&& requestHeader.split(tokenPrefix).length == 2) {
             //looking good
             token = requestHeader.substring(tokenPrefix.length());
         }
@@ -33,7 +38,7 @@ public class TokenExaminater {
 	}
 
 	public boolean validateToken(String token) {
-		return token.split("-||-")[0].equals(answerToken);
+		return token.split(tokenSeperator)[0].equals(answerToken);
 	}
 
 	public Authentication getAuthentication(String token) {
@@ -50,7 +55,7 @@ public class TokenExaminater {
 	}
 
 	private String getUserID(String token) {
-		return token.split("-||-")[1];
+		return token.split(tokenSeperator)[1];
 	}
 
 }

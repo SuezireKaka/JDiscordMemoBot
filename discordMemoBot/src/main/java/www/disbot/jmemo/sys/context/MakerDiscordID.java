@@ -8,7 +8,6 @@ import lombok.Getter;
 @Getter
 @Component
 public class MakerDiscordID {
-	
 	@Value("${discord.bot.maker.discord-user.id}")
     private String makerDiscordID;
 }

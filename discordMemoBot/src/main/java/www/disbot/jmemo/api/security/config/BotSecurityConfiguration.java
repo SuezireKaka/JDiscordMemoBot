@@ -19,6 +19,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
+import www.disbot.jmemo.sys.context.ApiRequestInfo;
+
 @Configuration
 @EnableWebSecurity(debug = true)
 @EnableMethodSecurity
@@ -31,6 +33,9 @@ public class BotSecurityConfiguration implements WebMvcConfigurer {
 	
 	@Autowired
 	private CustomAccessDeniedHandler denyHandler;
+	
+	@Autowired
+	private ApiRequestInfo requestInfo;
 	
 	@Bean
 	PasswordEncoder passwordEncoder() {
@@ -55,7 +60,8 @@ public class BotSecurityConfiguration implements WebMvcConfigurer {
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.setAllowedOrigins(List.of("http://localhost:8080"));
+		configuration.setAllowedOrigins(List.of("http://%s:%s"
+				.formatted(requestInfo.getSourceHost(), requestInfo.getSourcePort())));
 		configuration.setAllowedMethods(List.of("HEAD", "GET", "POST", "PUT", "DELETE", "OPTIONS"));
 		configuration.setAllowedHeaders(
 				List.of("Content-Type", "x-auth-token", "Access-Control-Allow-Origin", "Cache-control", "X-PINGOTHER"));

@@ -13,4 +13,7 @@ public class DiscordBotToken {
     
     @Value("${discord.bot.token-prefix}")
     private String tokenPrefix;
+    
+    @Value("${discord.bot.token-seperator}")
+    private String tokenSeperator;
 }

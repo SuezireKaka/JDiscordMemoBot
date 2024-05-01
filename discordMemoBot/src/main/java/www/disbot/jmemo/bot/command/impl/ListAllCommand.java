@@ -19,13 +19,13 @@ public class ListAllCommand implements Command {
 	public static final String COMMAND = Command.PREFIX + "listAll";
 	public static final String EXPLAIN = "모든 커맨드를 설명할게요";
 	
-	public static final String[] ARGS_NAME_ARRAY = new String[]{};
+	private static final String[] ARGS_NAME_ARRAY = new String[]{};
 	
 	public static final String USAGE = ArgsPacker.usagePack(COMMAND, ARGS_NAME_ARRAY);
 
 	@Override
 	public String[] getArgNameArray() {
-		return new String[0];
+		return ARGS_NAME_ARRAY.clone();
 	}
 	
 	@Override

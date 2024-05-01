@@ -11,9 +11,9 @@ import www.disbot.jmemo.bot.parser.impl.HelloWorldParser;
 import www.disbot.jmemo.bot.view.View;
 import www.disbot.jmemo.bot.view.impl.CommandResultView;
 
-public class HelloWorldCommand implements Command {
-	public static final String COMMAND = Command.PREFIX + "hello";
-	public static final String EXPLAIN = "봇이 헬로월드를 시전해요";
+public class RegisterCommand implements Command {
+	public static final String COMMAND = Command.PREFIX + "register";
+	public static final String EXPLAIN = "봇이 사용자 정보를 기억하게 해요";
 	
 	private static final String[] ARGS_NAME_ARRAY = new String[]{};
 	
@@ -31,6 +31,8 @@ public class HelloWorldCommand implements Command {
 					argsMap.values().toArray(new String[0]),
 					ARGS_NAME_ARRAY);
 		}
+		
+		
 		
 		HelloWorldVO result = new HelloWorldVO("Hello, world!");
 		

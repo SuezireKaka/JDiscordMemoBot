@@ -8,7 +8,6 @@ import lombok.Getter;
 @Getter
 @Component
 public class BotChannelID {
-	
 	@Value("${discord.bot.allow-channel.id}")
     private String botChannelID;
 }

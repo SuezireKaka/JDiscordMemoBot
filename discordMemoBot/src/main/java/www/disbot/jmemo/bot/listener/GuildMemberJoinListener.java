@@ -15,35 +15,32 @@ import www.disbot.jmemo.bot.view.View;
 @RequiredArgsConstructor
 public class GuildMemberJoinListener extends ListenerAdapter {
 	private GreetingController controller = new GreetingController();
-	
+
 	private ResponseCarrier carrier = new ResponseCarrier();
-	
+
 	@NonNull
 	private String makerID;
 	@NonNull
 	private String mainChannelID;
-	
+
 	@Override
 	public void onGuildMemberJoin(GuildMemberJoinEvent event) {
 		User newUser = event.getUser();
-        TextChannel textChannel = event.getGuild().getTextChannelById(mainChannelID);
-        
-        log.info("get member join : " + newUser.getGlobalName());
-        log.info("whose username is : " + newUser.getName());
-        
+		TextChannel textChannel = event.getGuild().getTextChannelById(mainChannelID);
+
+		log.info("get member join : " + newUser.getGlobalName());
+		log.info("whose username is : " + newUser.getName());
+
 		try {
 			View resultView = controller.execute(newUser);
-			
+
 			if (resultView != null) {
 				carrier.carryResponseToChannel(textChannel, resultView);
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			carrier.carryErrorToChannel(textChannel, e, makerID);
 		}
-        
-        
-        
+
 	}
-    
+
 }
