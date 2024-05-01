@@ -42,7 +42,7 @@ public class DiscordMemoBotApplication {
 		ApiRequestInfo apiRequestInfoEntity = context.getBean(ApiRequestInfo.class);
 		
 		String goalHost = apiRequestInfoEntity.getGoalHost();
-		String goalPort = apiRequestInfoEntity.getGoalPort();
+		int goalPort = apiRequestInfoEntity.getGoalPort();
 
 		main = JDABuilder.createDefault(discordBotToken).setActivity(Activity.playing("자바로 동작"))
 				.enableIntents(GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)

@@ -12,11 +12,11 @@ public class ApiRequestInfo {
     private String sourceHost;
     
     @Value("${api.request.source.port}")
-    private String sourcePort;
+    private int sourcePort;
     
     @Value("${api.request.goal.host}")
     private String goalHost;
     
     @Value("${api.request.goal.port}")
-    private String goalPort;
+    private int goalPort;
 }

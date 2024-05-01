@@ -60,7 +60,7 @@ public class BotSecurityConfiguration implements WebMvcConfigurer {
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.setAllowedOrigins(List.of("http://%s:%s"
+		configuration.setAllowedOrigins(List.of("http://%s:%d"
 				.formatted(requestInfo.getSourceHost(), requestInfo.getSourcePort())));
 		configuration.setAllowedMethods(List.of("HEAD", "GET", "POST", "PUT", "DELETE", "OPTIONS"));
 		configuration.setAllowedHeaders(
