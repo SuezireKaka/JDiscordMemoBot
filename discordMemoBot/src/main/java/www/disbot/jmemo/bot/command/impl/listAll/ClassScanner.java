@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.Enumeration;
 import java.util.List;
 
+import www.disbot.jmemo.bot.command.ApiCommand;
 import www.disbot.jmemo.bot.command.Command;
 
 public class ClassScanner {
@@ -56,9 +57,14 @@ public class ClassScanner {
 				ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 				try {
 					Class<?> target = Class.forName(className, false, classLoader);
-					List<Class<?>> implInterfaceList = Arrays.asList(target.getInterfaces());
 					
+					List<Class<?>> implInterfaceList = Arrays.asList(target.getInterfaces());
 					if (implInterfaceList.contains(Command.class)) {
+						classList.add(target);
+					}
+					
+					List<Class<?>> superClassList = Arrays.asList(target.getSuperclass());
+					if (superClassList.contains(ApiCommand.class)) {
 						classList.add(target);
 					}
 				}

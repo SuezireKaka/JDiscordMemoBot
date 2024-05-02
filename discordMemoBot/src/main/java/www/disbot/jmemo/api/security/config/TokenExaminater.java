@@ -12,13 +12,13 @@ import www.disbot.jmemo.api.party.mapper.PartyMapper;
 
 @Component
 public class TokenExaminater {
-	@Value("{discord.bot.token-prefix}")
+	@Value("${discord.bot.token-prefix}")
 	private String tokenPrefix;
 	
-	@Value("{discord.bot.token-seperator}")
+	@Value("${discord.bot.token-seperator}")
 	private String tokenSeperator;
 	
-	@Value("{discord.bot.token}")
+	@Value("${discord.bot.token}")
 	private String answerToken;
 	
 	@Autowired
@@ -38,7 +38,8 @@ public class TokenExaminater {
 	}
 
 	public boolean validateToken(String token) {
-		return token.split(tokenSeperator)[0].equals(answerToken);
+		String[] splitedToken = token.split(tokenSeperator);
+		return splitedToken[0].equals(answerToken);
 	}
 
 	public Authentication getAuthentication(String token) {

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import net.dv8tion.jda.api.entities.User;
 import www.disbot.jmemo.bot.command.Command;
 import www.disbot.jmemo.bot.command.impl.listAll.ClassScanner;
 import www.disbot.jmemo.bot.controller.args.ArgsPacker;
@@ -29,7 +30,7 @@ public class ListAllCommand implements Command {
 	}
 	
 	@Override
-	public View command(Map<String, String> argsMap) throws Exception {
+	public View command(User user, Map<String, String> argsMap) throws Exception {
 		if (argsMap.size() != ARGS_NAME_ARRAY.length) {
 			throw new ArgsNumberDismatchException(
 					argsMap.values().toArray(new String[0]),

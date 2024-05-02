@@ -24,7 +24,9 @@ public class MessageListener extends ListenerAdapter {
 	@NonNull
 	private String goalHost;
 	@NonNull
-	private int goalPort;
+	private Integer goalPort;
+	@NonNull
+	private String answerToken;
 	@NonNull
 	private String tokenPrefix;
 	@NonNull
@@ -32,12 +34,12 @@ public class MessageListener extends ListenerAdapter {
 
 	private CommandController controller = new CommandController();
 
-	private DiscordBotRequestStrategy requester = new DiscordBotRequestStrategy(goalHost, goalPort, tokenPrefix, tokenSeperator);
-
 	private ResponseCarrier carrier = new ResponseCarrier();
 
 	@Override
 	public void onMessageReceived(MessageReceivedEvent event) {
+		DiscordBotRequestStrategy requester = new DiscordBotRequestStrategy(goalHost, goalPort, answerToken, tokenPrefix, tokenSeperator);
+		
 		User user = event.getAuthor();
 		requester.save(user);
 
@@ -59,7 +61,7 @@ public class MessageListener extends ListenerAdapter {
 		String[] commandArgs = Arrays.copyOfRange(messageArray, 1, messageArray.length);
 
 		try {
-			View resultView = controller.execute(commandKey, commandArgs, requester);
+			View resultView = controller.execute(user, commandKey, commandArgs, requester);
 
 			if (resultView != null) {
 				carrier.carryResponseToChannel(textChannel, resultView);

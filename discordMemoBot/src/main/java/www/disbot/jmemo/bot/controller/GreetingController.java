@@ -15,14 +15,7 @@ public class GreetingController {
 		
 		Command command = new GreetingCommand();
 		
-		String[] requireArgsNameArray = command.getArgNameArray();
-		
-		packedArgs.put(requireArgsNameArray[0], newUser.getEffectiveName());
-		packedArgs.put(requireArgsNameArray[1], newUser.getName());
-		packedArgs.put(requireArgsNameArray[2], newUser.getEffectiveAvatarUrl());
-		packedArgs.put(requireArgsNameArray[3], String.valueOf(newUser.isBot()));
-		
-		View result = command.command(packedArgs);
+		View result = command.command(newUser, packedArgs);
 		result.init(null);
 		
 		return result;

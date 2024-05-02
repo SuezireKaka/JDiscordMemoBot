@@ -1,9 +1,10 @@
 package www.disbot.jmemo.bot.command.api;
 
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import lombok.NonNull;
@@ -17,6 +18,8 @@ public class DiscordBotRequestStrategy implements RequestStrategy {
 	@NonNull
 	private Integer goalPort;
 	@NonNull
+	private String answerToken;
+	@NonNull
 	private String tokenPrefix;
 	@NonNull
 	private String tokenSeperator;
@@ -28,7 +31,7 @@ public class DiscordBotRequestStrategy implements RequestStrategy {
 	}
 
 	@Override
-	public String requestTo(String urlTail, HttpMethod method, HttpEntity<?> requestBody) {
+	public <B> String requestTo(String urlTail, HttpMethod method, B body) {
 		RestTemplate template = new RestTemplate();
 
 		String urlHead = "http://%s:%d".formatted(goalHost, goalPort);
@@ -36,9 +39,12 @@ public class DiscordBotRequestStrategy implements RequestStrategy {
 
 		String userId = user == null ? "" : user.getId();
 
-		HttpHeaders headers = new HttpHeaders();
+		MultiValueMap<String, String> headerMap = new LinkedMultiValueMap<>();
 
-		headers.add("x-auth-token", tokenPrefix + tokenSeperator + userId);
+		headerMap.add("x-auth-token",
+				tokenPrefix + answerToken + tokenSeperator + userId);
+		
+		HttpEntity<B> requestBody = new HttpEntity<>(body, headerMap);
 
 		ResponseEntity<String> accessTokenResponse = template.exchange(url,
 				HttpMethod.POST, requestBody, String.class);

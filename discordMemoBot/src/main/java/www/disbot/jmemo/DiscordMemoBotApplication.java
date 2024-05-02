@@ -47,7 +47,7 @@ public class DiscordMemoBotApplication {
 		main = JDABuilder.createDefault(discordBotToken).setActivity(Activity.playing("자바로 동작"))
 				.enableIntents(GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
 				.addEventListeners(
-						new MessageListener(makerDiscordID, goalHost, goalPort, tokenPrefix, tokenSeperator),
+						new MessageListener(makerDiscordID, goalHost, goalPort, discordBotToken, tokenPrefix, tokenSeperator),
 						new GuildMemberJoinListener(makerDiscordID, botChannelID))
 				.build();
 	}

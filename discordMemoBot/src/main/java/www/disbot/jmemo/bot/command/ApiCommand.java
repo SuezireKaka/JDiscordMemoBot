@@ -1,19 +1,37 @@
 package www.disbot.jmemo.bot.command;
 
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import lombok.Setter;
+import www.disbot.jmemo.api.security.model.EntryPointErrorResponse;
 import www.disbot.jmemo.bot.command.api.RequestStrategy;
 
-@AllArgsConstructor
 public abstract class ApiCommand implements Command {
 	@Setter
 	private RequestStrategy requestStrategy;
 	
-	protected String requestTo(String urlTail, HttpMethod method, HttpEntity<?> requestBody) {
-		String result = requestStrategy.requestTo(urlTail, method, requestBody);
+	public ApiCommand(RequestStrategy requestStrategy) {
+		this.requestStrategy = requestStrategy;
+	}
+	
+	protected <B, T> T requestTo(String urlTail, HttpMethod method, B body,
+			Class<T> resultMapClass) throws Exception {
+		String responseString = requestStrategy.requestTo(urlTail, method, body);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		T result = null;
+		
+		try {
+			result = mapper.readValue(responseString, resultMapClass);
+		}
+		catch (JsonProcessingException jpe) {
+			EntryPointErrorResponse error = mapper.readValue(responseString, EntryPointErrorResponse.class);
+			throw new Exception(error.getMsg());
+		}
 		
 		return result;
 	}
