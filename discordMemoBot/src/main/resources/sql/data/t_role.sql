@@ -6,9 +6,6 @@ select NEXT_PK('s_role') /*'0000'*/ id,
             1 dflt,
             'PM' allow;
 
-insert into rel_party_role(party, role)
-values('0001', '0000');
-
 insert into t_role(id, provider, name, info, dflt, allow)
 select NEXT_PK('s_role') /*'0001'*/ id,
             '0000' provider,
@@ -17,5 +14,10 @@ select NEXT_PK('s_role') /*'0001'*/ id,
             0 dflt,
             'SM' allow;
 
-insert into rel_party_role(party, role)
-values('0001', '0001');
+insert into t_role(id, provider, name, info, dflt, allow)
+select NEXT_PK('s_role') /*'0002'*/ id,
+            '0000' provider,
+            'anonymous' name,
+            '익명으로 활동하는 모두에게 열린 기본 역할' info,
+            0 dflt,
+            'AV' allow;

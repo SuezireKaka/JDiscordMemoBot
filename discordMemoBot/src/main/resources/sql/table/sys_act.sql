@@ -4,3 +4,4 @@ create table sys_act(
 	type	varchar(8),
 	info	varchar(255)
 );
+create index idx_area on sys_act(area);

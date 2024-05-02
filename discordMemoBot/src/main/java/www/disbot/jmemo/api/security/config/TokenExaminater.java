@@ -1,17 +1,27 @@
 package www.disbot.jmemo.api.security.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import net.dv8tion.jda.api.entities.User;
 import www.disbot.jmemo.DiscordMemoBotApplication;
+import www.disbot.jmemo.api.framework.model.Entity;
 import www.disbot.jmemo.api.party.mapper.PartyMapper;
+import www.disbot.jmemo.api.party.model.RoleVO;
+import www.disbot.jmemo.api.party.model.UserVO;
 
 @Component
+@RequiredArgsConstructor
 public class TokenExaminater {
+	private final PartyMapper partyMapper;
+	
 	@Value("${discord.bot.token-prefix}")
 	private String tokenPrefix;
 	
@@ -20,9 +30,6 @@ public class TokenExaminater {
 	
 	@Value("${discord.bot.token}")
 	private String answerToken;
-	
-	@Autowired
-	private PartyMapper partyMapper;
 	
 	public String resolveToken(HttpServletRequest request) {
         String requestHeader = request.getHeader("x-auth-token");
@@ -47,12 +54,21 @@ public class TokenExaminater {
 			.map(User::getName)
 			.complete();
 		
-		return null;
+		UserVO partyDetails = partyMapper.getUserByName(userName);
 		
-		//PartyVO partyDetails = partyMapper.findByUserName(userName);
+		// 여기까지 왔으면 미등록 유저라고 해도 Anonym View는 줘야 함
+		if (partyDetails == null) {
+			List<RoleVO> anonymRoleList = partyMapper.listAllAnonymRoles();
+			
+			partyDetails = UserVO.builder()
+					.id(Entity.ANONYMOUS_ID)
+					.name(userName)
+					.roleList(anonymRoleList)
+					.build();
+		}
 		
-		//return new UsernamePasswordAuthenticationToken(
-		//		partyDetails, "", partyDetails.getAuthorities());
+		return new UsernamePasswordAuthenticationToken(
+				partyDetails, "", partyDetails.getAuthorities());
 	}
 
 	private String getUserID(String token) {

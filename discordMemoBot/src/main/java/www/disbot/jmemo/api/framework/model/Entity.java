@@ -8,5 +8,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 public abstract class Entity {
+	public static final String ANONYMOUS_ID = "----";
+	
 	private String id;
 }

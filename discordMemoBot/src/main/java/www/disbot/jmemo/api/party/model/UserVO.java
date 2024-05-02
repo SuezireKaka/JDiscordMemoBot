@@ -19,11 +19,11 @@ public class UserVO extends PartyVO implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	
 	@Builder.Default
-	private List<RoleVO> rolesList = new ArrayList<>();
+	private List<RoleVO> roleList = new ArrayList<>();
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return rolesList;
+		return roleList;
 	}
 
 	@Override
