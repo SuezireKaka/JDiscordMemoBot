@@ -43,7 +43,7 @@ public class SignUpCommand extends ApiCommand {
 					ARGS_NAME_ARRAY);
 		}
 		
-		HttpEntity<SignUpDTO> body = new HttpEntity<>(new SignUpDTO(user.getName()));
+		SignUpDTO body = new SignUpDTO(user.getName());
 		
 		SignUpResultDTO result = requestTo("/party/createUser", HttpMethod.POST, body, SignUpResultDTO.class);
 		

@@ -26,7 +26,7 @@ public class DiscordAuthenticationFilter extends OncePerRequestFilter {
 		
 		String token = examinator.resolveToken(servletRequest);
 		
-		log.info("토큰 추출 완료: token = %s".formatted(token));
+		log.info("토큰 추출 완료".formatted(token));
 		log.info("토큰 분석중...");
 
 		if (token != null && examinator.validateToken(token)) {
@@ -36,7 +36,7 @@ public class DiscordAuthenticationFilter extends OncePerRequestFilter {
 			
 			Authentication savedAuthentication = SecurityContextHolder.getContext().getAuthentication();
 
-			log.info("토큰 확인 완료: saved = %s".formatted(savedAuthentication));
+			log.info("토큰 확인 완료".formatted(savedAuthentication));
 		}
 
 		filterChain.doFilter(servletRequest, servletResponse);

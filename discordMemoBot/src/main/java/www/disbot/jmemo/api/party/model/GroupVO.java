@@ -8,7 +8,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 public class GroupVO extends PartyVO {
-	private static final long serialVersionUID = 1L;
+	public static final GroupVO JMEMO_PROXY = GroupVO.builder().id("0000").build();
 	
 	private boolean isOpen;
 	private String introduce;

@@ -9,5 +9,7 @@ import www.disbot.jmemo.api.framework.model.TimeEntity;
 @SuperBuilder
 @NoArgsConstructor
 public class PartyVO extends TimeEntity {
+	public static final String SEQUENCE_NAME = "s_party";
+
 	private String name;
 }
