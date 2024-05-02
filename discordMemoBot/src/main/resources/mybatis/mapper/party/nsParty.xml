@@ -89,13 +89,13 @@
 		   and u.name = #{name};
 	</select>
 
-	<!-- public boolean createUser(@Param("dto") SignUpDTO dto); -->
+	<!-- public boolean createUser(@Param("user") UserVO user); -->
 	<insert id="createUser">
 		<selectKey keyProperty="id" resultType="String" order="BEFORE">
 			select NEXT_PK('s_party')
 		</selectKey>
 		
 		insert into t_party(id, discrim, name)
-		values(#{id}, 'U', #{dto.name});
+		values(#{id}, 'U', #{user.name});
 	</insert>
 </mapper>

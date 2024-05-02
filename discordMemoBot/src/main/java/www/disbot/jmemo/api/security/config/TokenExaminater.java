@@ -1,6 +1,5 @@
 package www.disbot.jmemo.api.security.config;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;

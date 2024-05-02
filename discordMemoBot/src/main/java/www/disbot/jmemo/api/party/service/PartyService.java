@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import www.disbot.jmemo.api.party.mapper.PartyMapper;
-import www.disbot.jmemo.api.security.model.SignUpDTO;
+import www.disbot.jmemo.api.party.model.UserVO;
 import www.disbot.jmemo.api.security.model.SignUpResultDTO;
 
 @Service
@@ -12,10 +12,10 @@ public class PartyService {
 	@Autowired
 	PartyMapper partyMapper;
 
-	public SignUpResultDTO createUser(SignUpDTO dto) {
+	public SignUpResultDTO createUser(UserVO user) {
 		SignUpResultDTO result = new SignUpResultDTO();
 		
-		boolean success = partyMapper.createUser(dto);
+		boolean success = partyMapper.createUser(user);
 		
 		result.setSuccess(success);
 		
