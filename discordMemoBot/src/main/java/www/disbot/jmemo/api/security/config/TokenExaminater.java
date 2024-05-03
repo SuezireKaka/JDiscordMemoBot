@@ -37,7 +37,7 @@ public class TokenExaminater {
         if (requestHeader != null
         		&& requestHeader.startsWith(tokenPrefix)
         		&& requestHeader.split(tokenPrefix).length == 2) {
-            //looking good
+        	
             token = requestHeader.substring(tokenPrefix.length());
         }
         return token; 
@@ -49,25 +49,30 @@ public class TokenExaminater {
 	}
 
 	public Authentication getAuthentication(String token) {
-		String userName = DiscordMemoBotApplication.main.retrieveUserById(getUserID(token))
-			.map(User::getName)
-			.complete();
+		String discordId = getUserID(token);
 		
-		UserVO partyDetails = partyMapper.getUserByName(userName);
+		UserVO partyDetails = partyMapper.getUserByDiscordId(discordId);
 		
 		// 여기까지 왔으면 미등록 유저라고 해도 Anonym View는 줘야 함
 		if (partyDetails == null) {
-			List<RoleVO> anonymRoleList = partyMapper.listAllAnonymRoles();
-			
-			partyDetails = UserVO.builder()
-					.id(Entity.ANONYMOUS_ID)
-					.name(userName)
-					.roleList(anonymRoleList)
-					.build();
+			partyDetails = grantAnonymToken(partyDetails, discordId);
 		}
 		
 		return new UsernamePasswordAuthenticationToken(
 				partyDetails, "", partyDetails.getAuthorities());
+	}
+
+	private UserVO grantAnonymToken(UserVO partyDetails, String discordId) {
+		List<RoleVO> anonymRoleList = partyMapper.listAllAnonymRoles();
+		
+		UserVO anonymUser = UserVO.builder()
+				.id(Entity.ANONYMOUS_ID)
+				.name("")
+				.discordId(discordId)
+				.roleList(anonymRoleList)
+				.build();
+		
+		return anonymUser.adjustName();
 	}
 
 	private String getUserID(String token) {

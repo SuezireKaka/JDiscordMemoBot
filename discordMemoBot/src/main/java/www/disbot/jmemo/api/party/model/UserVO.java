@@ -11,6 +11,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import net.dv8tion.jda.api.entities.User;
+import www.disbot.jmemo.DiscordMemoBotApplication;
 
 @Getter
 @SuperBuilder
@@ -18,8 +20,23 @@ import lombok.experimental.SuperBuilder;
 public class UserVO extends PartyVO implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	
+	private String discordId;
+	
 	@Builder.Default
 	private List<RoleVO> roleList = new ArrayList<>();
+	
+	public UserVO adjustName() {
+		String userName = DiscordMemoBotApplication.main.retrieveUserById(this.discordId)
+				.map(User::getName)
+				.complete();
+		
+		return UserVO.builder()
+				.id(getId())
+				.regDt(getRegDt()).uptDt(getUptDt())
+				.name(userName)
+				.discordId(discordId)
+				.build();
+	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

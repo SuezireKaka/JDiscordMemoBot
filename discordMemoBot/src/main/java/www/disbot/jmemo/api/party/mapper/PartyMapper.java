@@ -17,7 +17,7 @@ public interface PartyMapper extends GeneralMapper {
 	public List<RoleVO> listAllDefaultRolesOf(@Param("group") GroupVO group);
 	
 	
-	public UserVO getUserByName(String name);
+	public UserVO getUserByDiscordId(String discordId);
 	
 
 	public boolean createUser(@Param("user") UserVO user);

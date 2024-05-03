@@ -21,6 +21,7 @@
 	
 	<resultMap id="rmUserVO" extends="rmPartyVO"
 		type="www.disbot.jmemo.api.party.model.UserVO">
+		<result property="discordId" column="dis_id" />
 		<collection property="roleList" columnPrefix="r_"
 			resultMap="rmRoleVO">
 		</collection>
@@ -84,8 +85,8 @@
 		   and r.dflt = 1;
 	</select>
 
-	<!-- 	public PartyVO getUserByName(String name); -->
-	<select id="getUserByName" resultMap="rmPartyVO">
+	<!-- 	public UserVO getUserByDiscordId(String discordId); -->
+	<select id="getUserByDiscordId" resultMap="rmPartyVO">
 		select u.*,
 	        	r.id r_id, r.name r_name, r.info r_info, r.dflt r_dflt,
 	        	prov.id r_prov_id, prov.reg_dt r_prov_reg_dt, prov.upt_dt r_prov_upt_dt,
@@ -106,13 +107,13 @@
 		  left outer join sys_act act
 		    on allow.act = act.act
 		 where u.discrim = 'U'
-		   and u.name = #{name};
+		   and u.dis_id = #{discordId};
 	</select>
 
 	<!-- public boolean createUser(@Param("user") UserVO user); -->
 	<insert id="createUser">		
-		insert into t_party(id, discrim, name)
-		values(#{user.id}, 'U', #{user.name});
+		insert into t_party(id, discrim, name, dis_id)
+		values(#{user.id}, 'U', #{user.name}, #{user.discordId});
 	</insert>
 	
 	<!-- public boolean grantRolesToUser(@Param("user") UserVO user,

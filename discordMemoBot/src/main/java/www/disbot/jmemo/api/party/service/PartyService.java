@@ -20,7 +20,7 @@ public class PartyService {
 	public SignUpResultDTO createUser(UserVO user) {
 		SignUpResultDTO result = new SignUpResultDTO();
 		
-		boolean alreadyRegistered = partyMapper.getUserByName(user.getName()) != null;
+		boolean alreadyRegistered = partyMapper.getUserByDiscordId(user.getDiscordId()) != null;
 		
 		boolean success = true;
 		
