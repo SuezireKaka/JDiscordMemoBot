@@ -11,7 +11,7 @@ import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import www.disbot.jmemo.bot.ResponseCarrier;
-import www.disbot.jmemo.bot.command.api.DiscordBotRequestStrategy;
+import www.disbot.jmemo.bot.command.api.WebClientRequestStrategy;
 import www.disbot.jmemo.bot.controller.CommandController;
 import www.disbot.jmemo.bot.controller.args.ArgsPacker;
 import www.disbot.jmemo.bot.view.View;
@@ -31,6 +31,7 @@ public class MessageListener extends ListenerAdapter {
 	private String tokenPrefix;
 	@NonNull
 	private String tokenSeperator;
+	
 
 	private CommandController controller = new CommandController();
 
@@ -38,7 +39,9 @@ public class MessageListener extends ListenerAdapter {
 
 	@Override
 	public void onMessageReceived(MessageReceivedEvent event) {
-		DiscordBotRequestStrategy requester = new DiscordBotRequestStrategy(goalHost, goalPort, answerToken, tokenPrefix, tokenSeperator);
+		WebClientRequestStrategy requester = new WebClientRequestStrategy(
+				goalHost, goalPort,
+				answerToken, tokenPrefix, tokenSeperator);
 		
 		User user = event.getAuthor();
 		requester.save(user);

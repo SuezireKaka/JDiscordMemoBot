@@ -9,8 +9,6 @@ import org.springframework.stereotype.Component;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import net.dv8tion.jda.api.entities.User;
-import www.disbot.jmemo.DiscordMemoBotApplication;
 import www.disbot.jmemo.api.framework.model.Entity;
 import www.disbot.jmemo.api.party.mapper.PartyMapper;
 import www.disbot.jmemo.api.party.model.RoleVO;

@@ -2,11 +2,9 @@ package www.disbot.jmemo.bot.command.impl;
 
 import java.util.Map;
 
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 
 import net.dv8tion.jda.api.entities.User;
-import www.disbot.jmemo.api.security.model.SignUpDTO;
 import www.disbot.jmemo.api.security.model.SignUpResultDTO;
 import www.disbot.jmemo.bot.command.ApiCommand;
 import www.disbot.jmemo.bot.command.Command;
@@ -43,9 +41,7 @@ public class SignUpCommand extends ApiCommand {
 					ARGS_NAME_ARRAY);
 		}
 		
-		SignUpDTO body = new SignUpDTO(user.getName());
-		
-		SignUpResultDTO result = requestTo("/party/createUser", HttpMethod.POST, body, SignUpResultDTO.class);
+		SignUpResultDTO result = requestTo("/party/createUser", HttpMethod.POST, "", SignUpResultDTO.class);
 		
 		if (! result.isSuccess()) {
 			throw new Exception(result.getMsg());

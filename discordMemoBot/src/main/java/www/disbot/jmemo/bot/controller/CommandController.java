@@ -4,7 +4,7 @@ import java.util.Map;
 
 import net.dv8tion.jda.api.entities.User;
 import www.disbot.jmemo.bot.command.Command;
-import www.disbot.jmemo.bot.command.api.DiscordBotRequestStrategy;
+import www.disbot.jmemo.bot.command.api.WebClientRequestStrategy;
 import www.disbot.jmemo.bot.command.impl.HelloWorldCommand;
 import www.disbot.jmemo.bot.command.impl.ListAllCommand;
 import www.disbot.jmemo.bot.command.impl.SignUpCommand;
@@ -14,7 +14,7 @@ import www.disbot.jmemo.bot.view.View;
 
 public class CommandController {
 	
-	public View execute(User user, String key, String[] args, DiscordBotRequestStrategy requester) throws Exception {
+	public View execute(User user, String key, String[] args, WebClientRequestStrategy requester) throws Exception {
 		Map<String, String> packedArgs;
 		
 		View result = null;
