@@ -21,17 +21,6 @@ import www.disbot.jmemo.bot.view.View;
 public class MessageListener extends ListenerAdapter {
 	@NonNull
 	private String makerID;
-	@NonNull
-	private String goalHost;
-	@NonNull
-	private Integer goalPort;
-	@NonNull
-	private String answerToken;
-	@NonNull
-	private String tokenPrefix;
-	@NonNull
-	private String tokenSeperator;
-	
 
 	private CommandController controller = new CommandController();
 
@@ -39,9 +28,7 @@ public class MessageListener extends ListenerAdapter {
 
 	@Override
 	public void onMessageReceived(MessageReceivedEvent event) {
-		WebClientRequestStrategy requester = new WebClientRequestStrategy(
-				goalHost, goalPort,
-				answerToken, tokenPrefix, tokenSeperator);
+		WebClientRequestStrategy requester = new WebClientRequestStrategy();
 		
 		User user = event.getAuthor();
 		requester.save(user);

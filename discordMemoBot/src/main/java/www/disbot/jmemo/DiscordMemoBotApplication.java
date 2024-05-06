@@ -28,8 +28,6 @@ public class DiscordMemoBotApplication {
 		DiscordBotToken discordBotTokenEntity = context.getBean(DiscordBotToken.class);
 
 		String discordBotToken = discordBotTokenEntity.getDiscordBotToken();
-		String tokenPrefix = discordBotTokenEntity.getTokenPrefix();
-		String tokenSeperator = discordBotTokenEntity.getTokenSeperator();
 
 		MakerDiscordID makerDiscordIDEntity = context.getBean(MakerDiscordID.class);
 
@@ -38,16 +36,11 @@ public class DiscordMemoBotApplication {
 		BotChannelID botChannelIDEntity = context.getBean(BotChannelID.class);
 
 		String botChannelID = botChannelIDEntity.getBotChannelID();
-		
-		ApiRequestInfo apiRequestInfoEntity = context.getBean(ApiRequestInfo.class);
-		
-		String goalHost = apiRequestInfoEntity.getGoalHost();
-		int goalPort = apiRequestInfoEntity.getGoalPort();
 
 		main = JDABuilder.createDefault(discordBotToken).setActivity(Activity.playing("자바로 동작"))
 				.enableIntents(GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
 				.addEventListeners(
-						new MessageListener(makerDiscordID, goalHost, goalPort, discordBotToken, tokenPrefix, tokenSeperator),
+						new MessageListener(makerDiscordID),
 						new GuildMemberJoinListener(makerDiscordID, botChannelID))
 				.build();
 	}

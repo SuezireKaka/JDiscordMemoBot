@@ -5,24 +5,15 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import net.dv8tion.jda.api.entities.User;
+import www.disbot.jmemo.DiscordMemoBotApplication;
 
 @RequiredArgsConstructor
 public class WebClientRequestStrategy implements RequestStrategy {
-	@NonNull
-	private String goalHost;
-	@NonNull
-	private Integer goalPort;
-	@NonNull
-	private String answerToken;
-	@NonNull
-	private String tokenPrefix;
-	@NonNull
-	private String tokenSeperator;
+	private ContextHandler handler =
+			new ContextHandler(DiscordMemoBotApplication.context);
 	
-
 	private User user;
 
 	public void save(User user) {
@@ -31,7 +22,10 @@ public class WebClientRequestStrategy implements RequestStrategy {
 
 	@Override
 	public <B> String requestTo(String urlTail, HttpMethod method, B body) {
-		String urlHead = "http://%s:%d".formatted(goalHost, goalPort);
+		
+		
+		String urlHead = "http://%s:%d".formatted(
+				handler.getGoalHost(), Integer.valueOf(handler.getGoalPort()));
 		String url = urlHead + urlTail;
 
 		String userId = user == null ? "" : user.getId();
@@ -47,7 +41,7 @@ public class WebClientRequestStrategy implements RequestStrategy {
 		if (method.equals(HttpMethod.GET)) {
 			result = webClient.get()
 					.uri(url)
-					.header("x-auth-token", tokenPrefix + answerToken + tokenSeperator + userId)
+					.header("x-auth-token", saltToken(userId))
 					.retrieve()
 					.bodyToMono(String.class)
 					.block();
@@ -56,7 +50,7 @@ public class WebClientRequestStrategy implements RequestStrategy {
 		if (method.equals(HttpMethod.POST)) {
 			result = webClient.post()
 					.uri(url)
-					.header("x-auth-token", tokenPrefix + answerToken + tokenSeperator + userId)
+					.header("x-auth-token", saltToken(userId))
 					.bodyValue(body)
 					.retrieve()
 					.bodyToMono(String.class)
@@ -64,6 +58,14 @@ public class WebClientRequestStrategy implements RequestStrategy {
 		}
 		
 		return result;
+	}
+
+	private String saltToken(String userId) {
+		
+		return handler.getTokenPrefix()
+				+ handler.getAnswerToken()
+				+ handler.getTokenSeperator()
+				+ userId;
 	}
 
 }
