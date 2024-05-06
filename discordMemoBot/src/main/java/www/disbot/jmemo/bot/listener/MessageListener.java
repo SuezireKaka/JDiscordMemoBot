@@ -25,11 +25,11 @@ public class MessageListener extends ListenerAdapter {
 	private CommandController controller = new CommandController();
 
 	private ResponseCarrier carrier = new ResponseCarrier();
+	
+	private WebClientRequestStrategy requester = new WebClientRequestStrategy();
 
 	@Override
 	public void onMessageReceived(MessageReceivedEvent event) {
-		WebClientRequestStrategy requester = new WebClientRequestStrategy();
-		
 		User user = event.getAuthor();
 		requester.save(user);
 

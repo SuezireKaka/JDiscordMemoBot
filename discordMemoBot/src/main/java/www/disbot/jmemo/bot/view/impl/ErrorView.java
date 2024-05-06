@@ -7,7 +7,6 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import net.dv8tion.jda.api.entities.MessageEmbed;
-import www.disbot.jmemo.bot.model.data.HelloWorldVO;
 import www.disbot.jmemo.bot.view.DiscordView;
 
 @Getter
@@ -34,13 +33,11 @@ public class ErrorView extends DiscordView {
 	}
 
 	@Override
-	public List<MessageEmbed> close() {
-		String type = HelloWorldVO.class.getDeclaredFields()[0].getName();
-		
+	public List<MessageEmbed> close() {		
 		List<MessageEmbed> result = new ArrayList<>();
 		
 		result.add(this.getEmbedBuilder()
-				.addField(type,
+				.addField(ERROR_FIELD_TYPENAME,
 					ERROR_ALARM + MENTION_FORMAT.formatted(makerUsername),
 					false)
 				.build());

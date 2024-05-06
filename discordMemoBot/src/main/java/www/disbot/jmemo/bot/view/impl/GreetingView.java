@@ -8,7 +8,6 @@ import lombok.Getter;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import www.disbot.jmemo.bot.model.data.GreetingVO;
 import www.disbot.jmemo.bot.view.DiscordView;
-import www.disbot.jmemo.bot.view.user.AvatarCatcher;
 
 @Getter
 @AllArgsConstructor
@@ -46,8 +45,6 @@ public class GreetingView extends DiscordView {
 	public List<MessageEmbed> close() throws Exception {
 		String url = rawVO.getAvatarUrl();
 		String nick = rawVO.getEffectiveName();
-		
-		AvatarCatcher catcher = new AvatarCatcher();
 		
 		List<MessageEmbed> result = new ArrayList<>();
 		

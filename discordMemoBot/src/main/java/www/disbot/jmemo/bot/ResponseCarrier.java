@@ -10,7 +10,7 @@ import www.disbot.jmemo.bot.view.impl.ErrorView;
 
 @Slf4j
 public class ResponseCarrier {
-	public <T> void carryResponseToChannel(TextChannel textChannel, View resultView) throws Exception {		
+	public void carryResponseToChannel(TextChannel textChannel, View resultView) throws Exception {		
 		List<MessageEmbed> resultEmbedList = resultView.close();
 		
 		for (MessageEmbed embed : resultEmbedList) {
