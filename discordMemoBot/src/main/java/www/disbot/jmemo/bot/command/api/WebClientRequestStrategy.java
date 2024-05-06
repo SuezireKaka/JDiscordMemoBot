@@ -1,8 +1,6 @@
 package www.disbot.jmemo.bot.command.api;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import lombok.RequiredArgsConstructor;
@@ -22,25 +20,15 @@ public class WebClientRequestStrategy implements RequestStrategy {
 
 	@Override
 	public <B> String requestTo(String urlTail, HttpMethod method, B body) {
+		WebClient webClient = DiscordMemoBotApplication.webClient;
 		
-		
-		String urlHead = "http://%s:%d".formatted(
-				handler.getGoalHost(), Integer.valueOf(handler.getGoalPort()));
-		String url = urlHead + urlTail;
-
 		String userId = user == null ? "" : user.getId();
-		
-		WebClient webClient = WebClient.builder()
-				.baseUrl(urlHead) 
-				.defaultCookie("cookieKey", "cookieValue")
-				.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE) 
-				.build();
 		
 		String result = "";
 		
 		if (method.equals(HttpMethod.GET)) {
 			result = webClient.get()
-					.uri(url)
+					.uri(urlTail)
 					.header("x-auth-token", saltToken(userId))
 					.retrieve()
 					.bodyToMono(String.class)
@@ -49,7 +37,7 @@ public class WebClientRequestStrategy implements RequestStrategy {
 		
 		if (method.equals(HttpMethod.POST)) {
 			result = webClient.post()
-					.uri(url)
+					.uri(urlTail)
 					.header("x-auth-token", saltToken(userId))
 					.bodyValue(body)
 					.retrieve()

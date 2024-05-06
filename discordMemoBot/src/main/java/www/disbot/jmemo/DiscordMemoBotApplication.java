@@ -5,6 +5,9 @@ import javax.security.auth.login.LoginException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -21,6 +24,7 @@ import www.disbot.jmemo.sys.context.MakerDiscordID;
 public class DiscordMemoBotApplication {
 	public static ApplicationContext context;
 	public static JDA main;
+	public static WebClient webClient;
 
 	public static void main(String[] args) throws LoginException {
 		context = SpringApplication.run(DiscordMemoBotApplication.class, args);
@@ -42,6 +46,19 @@ public class DiscordMemoBotApplication {
 				.addEventListeners(
 						new MessageListener(makerDiscordID),
 						new GuildMemberJoinListener(makerDiscordID, botChannelID))
+				.build();
+		
+		ApiRequestInfo apiRequestInfoEntity = context.getBean(ApiRequestInfo.class);
+		
+		String goalHost = apiRequestInfoEntity.getGoalHost();
+		int goalPort = apiRequestInfoEntity.getGoalPort();
+		
+		String urlHead = "http://%s:%d".formatted(goalHost, Integer.valueOf(goalPort));
+		
+		webClient = WebClient.builder()
+				.baseUrl(urlHead) 
+				.defaultCookie("cookieKey", "cookieValue")
+				.defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE) 
 				.build();
 	}
 

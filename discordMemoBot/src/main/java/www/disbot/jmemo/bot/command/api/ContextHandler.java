@@ -8,8 +8,6 @@ import www.disbot.jmemo.sys.context.DiscordBotToken;
 
 @Getter
 public class ContextHandler {
-	private String goalHost;
-	private int goalPort;
 	private String answerToken;
 	private String tokenPrefix;
 	private String tokenSeperator;
@@ -21,9 +19,6 @@ public class ContextHandler {
 		tokenPrefix = discordBotTokenEntity.getTokenPrefix();
 		tokenSeperator = discordBotTokenEntity.getTokenSeperator();
 		
-		ApiRequestInfo apiRequestInfoEntity = context.getBean(ApiRequestInfo.class);
 		
-		goalHost = apiRequestInfoEntity.getGoalHost();
-		goalPort = apiRequestInfoEntity.getGoalPort();
 	}
 }
