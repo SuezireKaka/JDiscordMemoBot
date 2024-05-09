@@ -1,6 +1,5 @@
 package www.disbot.jmemo.bot.command.impl;
 
-import java.util.Arrays;
 import java.util.Map;
 
 import net.dv8tion.jda.api.entities.User;
@@ -16,8 +15,8 @@ public class GreetingCommand implements Command {
 	private static final String[] ARGS_NAME_ARRAY = new String[]{};
 	
 	@Override
-	public String[] getArgNameArray() {
-		return Arrays.copyOf(ARGS_NAME_ARRAY, ARGS_NAME_ARRAY.length);
+	public String[] getArgsNameArray() {
+		return ARGS_NAME_ARRAY.clone();
 	}
 	
 	@Override
@@ -30,6 +29,5 @@ public class GreetingCommand implements Command {
 		
 		return new GreetingView(result);
 	}
-	
-	
+
 }

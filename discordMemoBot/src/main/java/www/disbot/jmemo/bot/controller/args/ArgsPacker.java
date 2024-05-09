@@ -23,7 +23,7 @@ public class ArgsPacker<C extends Command> {
 	public Map<String, String> mapPack(C cmd, String[] args) throws ArgsNumberDismatchException {
 		Map<String, String> result = new HashMap<>();
 		
-		String[] argNamesArray = cmd.getArgNameArray();
+		String[] argNamesArray = cmd.getArgsNameArray();
 		
 		if (args.length == argNamesArray.length) {
 			for (int i = 0; i < args.length; i++) {

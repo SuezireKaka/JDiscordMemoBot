@@ -25,7 +25,7 @@ public class ListAllCommand implements Command {
 	public static final String USAGE = ArgsPacker.usagePack(COMMAND, ARGS_NAME_ARRAY);
 
 	@Override
-	public String[] getArgNameArray() {
+	public String[] getArgsNameArray() {
 		return ARGS_NAME_ARRAY.clone();
 	}
 	

@@ -14,6 +14,7 @@ import www.disbot.jmemo.bot.ResponseCarrier;
 import www.disbot.jmemo.bot.command.api.WebClientRequestStrategy;
 import www.disbot.jmemo.bot.controller.CommandController;
 import www.disbot.jmemo.bot.controller.args.ArgsPacker;
+import www.disbot.jmemo.bot.controller.args.ArgsSaver;
 import www.disbot.jmemo.bot.view.View;
 
 @Slf4j
@@ -45,13 +46,18 @@ public class MessageListener extends ListenerAdapter {
 			log.info("디스코드 Message 문자열 값 공백");
 		}
 
-		String[] messageArray = message.getContentDisplay().split(ArgsPacker.SEPERATOR);
-
+		String[] messageArray = ArgsSaver.hasSaved(user)
+				? ArgsSaver.getCommandKeyOf(user).split(ArgsPacker.SEPERATOR)
+				: message.getContentDisplay().split(ArgsPacker.SEPERATOR);
+		
 		String commandKey = messageArray[0];
 		String[] commandArgs = Arrays.copyOfRange(messageArray, 1, messageArray.length);
+		
+		String asyncMessage = message.getContentDisplay();
 
 		try {
-			View resultView = controller.execute(user, commandKey, commandArgs, requester);
+			View resultView = controller.execute(
+					user, commandKey, commandArgs, asyncMessage, requester);
 
 			if (resultView != null) {
 				carrier.carryResponseToChannel(textChannel, resultView);
