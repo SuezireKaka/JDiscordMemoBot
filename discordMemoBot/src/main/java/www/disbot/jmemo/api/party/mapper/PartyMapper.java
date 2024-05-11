@@ -20,7 +20,7 @@ public interface PartyMapper extends GeneralMapper {
 	public UserVO getUserByDiscordId(String discordId);
 	
 
-	public boolean createUser(@Param("user") UserVO user);
+	public boolean createUser(UserVO user);
 	
 	public boolean grantRolesToUser(@Param("user") UserVO user,
 			@Param("rolesList") List<RoleVO> rolesList);

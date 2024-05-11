@@ -12,5 +12,4 @@ import www.disbot.jmemo.api.party.model.PartyVO;
 public class MemoVO extends TimeEntity {
 	private PartyVO writer;
 	private String title;
-	private boolean isPublic;
 }

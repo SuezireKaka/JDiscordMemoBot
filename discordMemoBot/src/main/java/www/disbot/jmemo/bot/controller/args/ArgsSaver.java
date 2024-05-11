@@ -45,4 +45,8 @@ public abstract class ArgsSaver {
 	public static boolean hasSaved(User user) {
 		return savedAsyncArgsMap.containsKey(user.getId());
 	}
+	
+	public static void remove(User user) {
+		savedAsyncArgsMap.remove(user.getId());
+	}
 }

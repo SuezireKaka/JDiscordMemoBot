@@ -3,7 +3,6 @@ package www.disbot.jmemo.bot.command.api;
 import org.springframework.context.ApplicationContext;
 
 import lombok.Getter;
-import www.disbot.jmemo.sys.context.ApiRequestInfo;
 import www.disbot.jmemo.sys.context.DiscordBotToken;
 
 @Getter

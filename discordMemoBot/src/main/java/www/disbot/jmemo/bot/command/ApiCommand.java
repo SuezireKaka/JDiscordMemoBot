@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Setter;
 import www.disbot.jmemo.api.security.model.EntryPointErrorResponse;
 import www.disbot.jmemo.bot.command.api.RequestStrategy;
+import www.disbot.jmemo.bot.exception.StrangeResponseException;
 
 public abstract class ApiCommand implements Command {
 	@Setter
@@ -29,8 +30,14 @@ public abstract class ApiCommand implements Command {
 			result = mapper.readValue(responseString, resultMapClass);
 		}
 		catch (JsonProcessingException jpe) {
-			EntryPointErrorResponse error = mapper.readValue(responseString, EntryPointErrorResponse.class);
-			throw new Exception(error.getMsg());
+			try {
+				EntryPointErrorResponse error = mapper.readValue(responseString, EntryPointErrorResponse.class);
+				throw new Exception(error.getMsg());
+			}
+			catch (JsonProcessingException fatalJpe) {
+				throw new StrangeResponseException(resultMapClass.getName());
+			}
+			
 		}
 		
 		return result;

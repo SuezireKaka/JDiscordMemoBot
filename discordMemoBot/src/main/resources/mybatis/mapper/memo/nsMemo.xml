@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="www.disbot.jmemo.api.memo.mapper.MemoMapper">
+	<resultMap id="rmMemoVO" extends="nsEntity.rmTimeEntity"
+		type="www.disbot.jmemo.api.memo.model.MemoVO">
+		<result property="title" column="title" />
+		<association property="writer" columnPrefix="w_"
+			resultMap="www.disbot.jmemo.api.party.mapper.PartyMapper.rmPartyVO"/>
+	</resultMap>
+	
+	<resultMap id="rmMemoDetailsVO" extends="rmMemoVO"
+		type="www.disbot.jmemo.api.memo.model.MemoDetailsVO">
+		<result property="memo" column="memo" />
+	</resultMap>
+
+	<!-- public List<MemoVO> listAllMemoes(Page<MemoVO> page); -->
+	<select id="listAllMemoes" resultMap="rmMemoVO">
+		select SQL_CALC_FOUND_ROWS m.*,
+				w.id w_id, 'P' w_discrim, w.name w_name
+		  from t_memo m
+		  left outer join t_party w
+		    on m.writer = w.id
+		 limit #{onePageNum} offset #{offset}
+	</select>
+	
+	<!-- public MemoDetailsVO getLatestMemoOf(UserVO user); -->
+	<select id="getLatestMemoOf" resultMap="rmMemoDetailsVO">
+		select m.*,
+				w.id w_id, 'P' w_discrim, w.name w_name
+		  from t_memo m
+		  left outer join t_party w
+		    on m.writer = w.id
+		 where w.id = #{id}
+		 order by id desc
+		 limit 1
+	</select>
+	
+	<!-- public int createMemo(@Param("user") UserVO user, @Param("memo") MemoDTO memo); -->
+	<insert id="createMemo">
+		<selectKey keyProperty="id" resultType="String" order="BEFORE">
+			select NEXT_PK('s_memo')
+		</selectKey>
+		insert into t_memo(id, writer, title, public, memo)
+		values (#{id}, #{user.id}, #{memo.title}, ${memo.isPublic}, #{memo.memo})
+	</insert>
+
+</mapper>

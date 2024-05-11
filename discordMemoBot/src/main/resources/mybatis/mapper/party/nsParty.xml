@@ -111,9 +111,9 @@
 	</select>
 
 	<!-- public boolean createUser(@Param("user") UserVO user); -->
-	<insert id="createUser">		
+	<insert id="createUser">
 		insert into t_party(id, discrim, name, dis_id)
-		values(#{user.id}, 'U', #{user.name}, #{user.discordId});
+		values(#{id}, 'U', #{name}, #{discordId});
 	</insert>
 	
 	<!-- public boolean grantRolesToUser(@Param("user") UserVO user,

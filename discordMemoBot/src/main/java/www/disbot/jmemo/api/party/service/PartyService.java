@@ -15,7 +15,7 @@ import www.disbot.jmemo.api.security.model.SignUpResultDTO;
 @Service
 public class PartyService {
 	@Autowired
-	PartyMapper partyMapper;
+	private PartyMapper partyMapper;
 
 	public SignUpResultDTO createUser(UserVO user) {
 		SignUpResultDTO result = new SignUpResultDTO();
