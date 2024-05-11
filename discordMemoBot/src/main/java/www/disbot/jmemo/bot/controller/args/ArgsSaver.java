@@ -49,4 +49,9 @@ public abstract class ArgsSaver {
 	public static void remove(User user) {
 		savedAsyncArgsMap.remove(user.getId());
 	}
+	
+	public static void cancelLastSave(User user) {
+		int size = savedAsyncArgsMap.get(user.getId()).getSecond().size();
+		savedAsyncArgsMap.get(user.getId()).getSecond().remove(size - 1);
+	}
 }

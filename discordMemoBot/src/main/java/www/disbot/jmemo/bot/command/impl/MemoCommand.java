@@ -1,5 +1,6 @@
 package www.disbot.jmemo.bot.command.impl;
 
+import java.util.Arrays;
 import java.util.Map;
 
 import org.springframework.http.HttpMethod;
@@ -14,6 +15,8 @@ import www.disbot.jmemo.bot.command.api.RequestStrategy;
 import www.disbot.jmemo.bot.controller.args.ArgsPacker;
 import www.disbot.jmemo.bot.controller.args.ArgsSaver;
 import www.disbot.jmemo.bot.exception.ArgsNumberDismatchException;
+import www.disbot.jmemo.bot.exception.OutOfStringLimitArgException;
+import www.disbot.jmemo.bot.exception.UnexpectedArgsException;
 import www.disbot.jmemo.bot.parser.ContentsParser;
 import www.disbot.jmemo.bot.parser.DiscordContents;
 import www.disbot.jmemo.bot.parser.impl.ArgRequireParser;
@@ -64,6 +67,15 @@ public class MemoCommand extends ApiCommand implements ArgsHoldingCommand {
 		ContentsParser parser;
 		
 		if (! ArgsSaver.hasSaved(user)) {
+			String key = ARGS_NAME_ARRAY[0];
+			String arg = argsMap.get(key);
+			
+			String[] expectedArgArray = key.split(REGEX_ESCAPE + OR);
+			
+			if (! Arrays.asList(expectedArgArray).contains(arg)) {
+				throw new UnexpectedArgsException(expectedArgArray, arg);
+			}
+			
 			ArgsSaver.init(user, setupCommand(argsMap));
 		}
 		else {
@@ -74,6 +86,15 @@ public class MemoCommand extends ApiCommand implements ArgsHoldingCommand {
 		
 		// 현재 들어온 것 개수에서 처음부터 들어와야 하는 것 개수를 빼면 대기 중인 인덱스
 		int nowIndex = argsMap.size() + savedArgs.length - ARGS_NAME_ARRAY.length;
+		
+		if (nowIndex > 0) {
+			int limit = ASYNC_ARGS_LIMIT_ARRAY[nowIndex - 1];
+			
+			if (asyncArg.length() > limit) {
+				ArgsSaver.cancelLastSave(user);
+				throw new OutOfStringLimitArgException(limit, asyncArg);
+			}
+		}
 		
 		if (! isArgsComplete(argsMap, savedArgs)) {
 			String msg = ASYNC_ARGS_INFO_ARRAY[nowIndex]

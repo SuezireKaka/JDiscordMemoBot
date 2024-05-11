@@ -9,6 +9,8 @@ public interface Command {
 	public static final String PREFIX = "$";
 	public static final String OR = "|";
 	
+	public static final String REGEX_ESCAPE = "\\";
+	
 	public static final int DISCORD_MAX_LENGTH = 2000;
 	
 	public String[] getArgsNameArray();
