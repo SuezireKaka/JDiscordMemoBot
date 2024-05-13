@@ -20,7 +20,7 @@ import www.disbot.jmemo.bot.parser.impl.MemoListParser;
 import www.disbot.jmemo.bot.view.View;
 import www.disbot.jmemo.bot.view.impl.CommandResultView;
 
-public class MemoListCommand extends ApiCommand implements Command {
+public class MemoListCommand extends ApiCommand {
 	public MemoListCommand(RequestStrategy requestStrategy) {
 		super(requestStrategy);
 	}

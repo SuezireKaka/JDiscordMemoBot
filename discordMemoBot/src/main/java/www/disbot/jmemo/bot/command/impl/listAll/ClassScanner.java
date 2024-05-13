@@ -9,7 +9,6 @@ import java.util.Collection;
 import java.util.Enumeration;
 import java.util.List;
 
-import www.disbot.jmemo.bot.command.ApiCommand;
 import www.disbot.jmemo.bot.command.Command;
 
 public class ClassScanner {
@@ -62,11 +61,10 @@ public class ClassScanner {
 					if (implInterfaceList.contains(Command.class)) {
 						classList.add(target);
 					}
-					else {
-						Class<?> superClassList = target.getSuperclass();
-						if (superClassList.equals(ApiCommand.class)) {
-							classList.add(target);
-						}
+					
+					Class<?> superClass = target.getSuperclass();
+					if (Arrays.asList(superClass.getInterfaces()).contains(Command.class)) {
+						classList.add(target);
 					}
 					
 				}
