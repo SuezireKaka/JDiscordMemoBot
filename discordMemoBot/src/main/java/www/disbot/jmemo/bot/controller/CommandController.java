@@ -9,6 +9,7 @@ import www.disbot.jmemo.bot.command.impl.HelloWorldCommand;
 import www.disbot.jmemo.bot.command.impl.ListAllCommand;
 import www.disbot.jmemo.bot.command.impl.MemoCommand;
 import www.disbot.jmemo.bot.command.impl.MemoListCommand;
+import www.disbot.jmemo.bot.command.impl.ReadCommand;
 import www.disbot.jmemo.bot.command.impl.SignUpCommand;
 import www.disbot.jmemo.bot.controller.args.ArgsPacker;
 import www.disbot.jmemo.bot.exception.NoCommandFoundException;
@@ -69,6 +70,16 @@ public class CommandController {
                 	.mapPack(new MemoListCommand(null), args);
 
         	result = new MemoListCommand(requester).command(user, packedArgs);
+        	result.init(MemoListCommand.class);
+        }
+		
+		else if (key.equalsIgnoreCase(ReadCommand.COMMAND)
+        		&& args.length == new ReadCommand(null).getArgsNameArray().length) {
+			
+        	packedArgs = new ArgsPacker<ReadCommand>()
+                	.mapPack(new ReadCommand(null), args);
+
+        	result = new ReadCommand(requester).command(user, packedArgs);
         	result.init(MemoListCommand.class);
         }
 		

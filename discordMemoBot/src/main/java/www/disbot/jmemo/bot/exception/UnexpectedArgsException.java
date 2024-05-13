@@ -16,4 +16,10 @@ public class UnexpectedArgsException extends Exception {
 				+ "expected number between %d and %d but found \"%s\"."
 					.formatted(min, max, cause));
 	}
+	
+	public UnexpectedArgsException(String cause) {
+		super(COMMON_MESSAGE
+				+ "id would be formed with 4 numbers and alphabet letters but found \"%s\"."
+					.formatted(cause));
+	}
 }
