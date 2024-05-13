@@ -63,8 +63,8 @@ public class ClassScanner {
 						classList.add(target);
 					}
 					else {
-						List<Class<?>> superClassList = Arrays.asList(target.getSuperclass());
-						if (superClassList.contains(ApiCommand.class)) {
+						Class<?> superClassList = target.getSuperclass();
+						if (superClassList.equals(ApiCommand.class)) {
 							classList.add(target);
 						}
 					}
