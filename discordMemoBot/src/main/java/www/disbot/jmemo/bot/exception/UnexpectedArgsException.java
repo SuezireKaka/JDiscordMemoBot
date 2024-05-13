@@ -1,7 +1,5 @@
 package www.disbot.jmemo.bot.exception;
 
-import java.math.BigInteger;
-
 public class UnexpectedArgsException extends Exception {
 	private static final long serialVersionUID = 1L;
 	
@@ -13,9 +11,9 @@ public class UnexpectedArgsException extends Exception {
 					.formatted(String.join(" or ", expected), cause));
 	}
 	
-	public UnexpectedArgsException(BigInteger min, BigInteger max, String cause) {
+	public UnexpectedArgsException(int min, int max, String cause) {
 		super(COMMON_MESSAGE
-				+ "expected number between %s and %s but found \"%s\"."
-					.formatted(min.toString(), max.toString(), cause));
+				+ "expected number between %d and %d but found \"%s\"."
+					.formatted(min, max, cause));
 	}
 }

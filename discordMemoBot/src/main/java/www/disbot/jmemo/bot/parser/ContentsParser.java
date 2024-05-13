@@ -1,5 +1,6 @@
 package www.disbot.jmemo.bot.parser;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import www.disbot.jmemo.bot.model.structure.Pair;
@@ -11,6 +12,9 @@ public interface ContentsParser {
 	public static final int MAX_ONE_VALUE_LENGTH = 800;
 	
 	public static final String LIST_SEPERATOR = "\n";
+	public static final String SUMMERY_SEPERATOR = "; ";
+	
+	public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 	
 	public enum ParseType {
 		KEY, VAL

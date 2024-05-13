@@ -24,7 +24,7 @@ public class MemoService {
 		List<MemoVO> result = memoMapper.listAllMemoes(page);
 		page.addAll(result);
 		
-		long totalPage = memoMapper.getFoundRows();
+		int totalPage = memoMapper.getFoundRows();
 		page.setTotalPage(totalPage);
 		
 		return page;

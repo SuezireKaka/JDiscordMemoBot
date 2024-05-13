@@ -28,7 +28,7 @@ public class MemoController {
 	@Autowired
 	private MemoService memoService;
 	
-	@GetMapping("/listAllMemoes")
+	@GetMapping("/listAllMemoes/{page}")
 	public ResponseEntity<Page<MemoVO>> listAllMemoes(@PathVariable int page) {
 		Page<MemoVO> result = memoService.listAllMemoes(page);
 		return new ResponseEntity<>(result, HttpStatus.OK);

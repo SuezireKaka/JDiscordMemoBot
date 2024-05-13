@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Select;
 
 public interface GeneralMapper {
 	@Select("SELECT FOUND_ROWS()")
-	public long getFoundRows();
+	public int getFoundRows();
 	
 	@Select("SELECT NEXT_MULTI_PK(#{tName}, ${summonCnt})")
 	public String getNextMultiIdConcat(

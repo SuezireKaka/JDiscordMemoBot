@@ -8,6 +8,7 @@ import www.disbot.jmemo.bot.command.api.WebClientRequestStrategy;
 import www.disbot.jmemo.bot.command.impl.HelloWorldCommand;
 import www.disbot.jmemo.bot.command.impl.ListAllCommand;
 import www.disbot.jmemo.bot.command.impl.MemoCommand;
+import www.disbot.jmemo.bot.command.impl.MemoListCommand;
 import www.disbot.jmemo.bot.command.impl.SignUpCommand;
 import www.disbot.jmemo.bot.controller.args.ArgsPacker;
 import www.disbot.jmemo.bot.exception.NoCommandFoundException;
@@ -59,6 +60,16 @@ public class CommandController {
 
         	result = new MemoCommand(requester, asyncMessage).command(user, packedArgs);
         	result.init(MemoCommand.class);
+        }
+		
+		else if (key.equalsIgnoreCase(MemoListCommand.COMMAND)
+        		&& args.length == new MemoListCommand(null).getArgsNameArray().length) {
+			
+        	packedArgs = new ArgsPacker<MemoListCommand>()
+                	.mapPack(new MemoListCommand(null), args);
+
+        	result = new MemoListCommand(requester).command(user, packedArgs);
+        	result.init(MemoListCommand.class);
         }
 		
 		else if (key.startsWith(Command.PREFIX) && ! key.equals(Command.PREFIX)) {
