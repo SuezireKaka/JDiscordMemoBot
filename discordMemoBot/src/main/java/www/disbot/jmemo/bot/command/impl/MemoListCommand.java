@@ -65,3 +65,4 @@ public class MemoListCommand extends ApiCommand implements Command {
 	   			.build();
 	}
 }
+
