@@ -41,7 +41,7 @@ public class SignUpCommand extends ApiCommand {
 					ARGS_NAME_ARRAY);
 		}
 		
-		SignUpResultDTO result = requestTo("/party/createUser", HttpMethod.POST, "", SignUpResultDTO.class);
+		SignUpResultDTO result = requestTo(PARTY + CREATE, HttpMethod.POST, "", SignUpResultDTO.class);
 		
 		if (! result.isSuccess()) {
 			throw new Exception(result.getMsg());

@@ -24,6 +24,16 @@
 		 limit #{onePageNum} offset #{offset}
 	</select>
 	
+	<!-- public MemoDetailsVO getMemoById(String id); -->
+	<select id="getMemoById" resultMap="rmMemoDetailsVO">
+		select m.*,
+				w.id w_id, 'P' w_discrim, w.name w_name
+		  from t_memo m
+		  left outer join t_party w
+		    on m.writer = w.id
+		 where m.id = #{id}
+	</select>
+	
 	<!-- public MemoDetailsVO getLatestMemoOf(UserVO user); -->
 	<select id="getLatestMemoOf" resultMap="rmMemoDetailsVO">
 		select m.*,

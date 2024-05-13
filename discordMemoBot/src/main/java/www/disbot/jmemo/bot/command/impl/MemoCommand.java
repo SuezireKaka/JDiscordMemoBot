@@ -109,7 +109,7 @@ public class MemoCommand extends ApiCommand implements ArgsHoldingCommand {
 					.memo(savedArgs[1])
 					.build();
 			
-			MemoDetailsVO response = requestTo("/memo/create", HttpMethod.POST, memoBody, MemoDetailsVO.class);
+			MemoDetailsVO response = requestTo(MEMO + CREATE, HttpMethod.POST, memoBody, MemoDetailsVO.class);
 			
 			parser = new MemoDetailsParser(response);
 			

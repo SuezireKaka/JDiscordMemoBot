@@ -14,11 +14,7 @@ import lombok.ToString;
 @ToString(exclude = {"offset"})
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({
-	"onePageNum",
-	"pageTerminology",
-	"pageForm",
-	"contentsTerminology"})
+@JsonIgnoreProperties({"onePageNum"})
 public class Page<T> {
 	public static final int ONE_PAGE_NUM = 10;
 	
@@ -48,6 +44,10 @@ public class Page<T> {
 	
 	public int getOnePageNum() {
 		return ONE_PAGE_NUM;
+	}
+	
+	public void applyFoundNumber(int foundNumber) {
+		setTotalPage(foundNumber / ONE_PAGE_NUM + 1);
 	}
 	
 }

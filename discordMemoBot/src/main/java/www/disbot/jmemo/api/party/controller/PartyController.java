@@ -12,15 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 import www.disbot.jmemo.api.party.model.UserVO;
 import www.disbot.jmemo.api.party.service.PartyService;
 import www.disbot.jmemo.api.security.model.SignUpResultDTO;
+import www.disbot.jmemo.bot.command.ApiCommand;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/party")
+@RequestMapping(ApiCommand.PARTY)
 public class PartyController {	
 	@Autowired
 	private PartyService partyService;
 	
-	@PostMapping("/createUser")
+	@PostMapping(ApiCommand.CREATE)
 	public ResponseEntity<SignUpResultDTO> createUser(
 			@AuthenticationPrincipal UserVO user) {
 		SignUpResultDTO result = partyService.createUser(user);

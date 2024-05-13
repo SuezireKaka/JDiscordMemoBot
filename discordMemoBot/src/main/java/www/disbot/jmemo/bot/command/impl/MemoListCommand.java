@@ -52,7 +52,7 @@ public class MemoListCommand extends ApiCommand {
 			throw new UnexpectedArgsException(1, Integer.MAX_VALUE, pageString);
 		}
 		
-		Page<MemoVO> result = requestTo("/memo/listAllMemoes/%d".formatted(pageNum),
+		Page<MemoVO> result = requestTo(MEMO + LIST_ALL + INT_VARIABLE.formatted(pageNum),
 				HttpMethod.GET, "", MemoVO.class, new TypeReference<>() {});
 		
 		DiscordContents contents = new DiscordContents(new MemoListParser(result));

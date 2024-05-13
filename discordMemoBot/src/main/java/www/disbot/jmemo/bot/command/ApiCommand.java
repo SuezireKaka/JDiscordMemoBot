@@ -13,6 +13,24 @@ import www.disbot.jmemo.bot.command.api.RequestStrategy;
 import www.disbot.jmemo.bot.exception.StrangeResponseException;
 
 public abstract class ApiCommand implements Command {
+	public static final String API_SUFFIX = "/";
+	public static final String PATH_REFER_OPEN = "{";
+	public static final String PATH_REFER_CLOSE = "}";
+	
+	public static final String INT_VARIABLE = API_SUFFIX + "%d";
+	public static final String STR_VARIABLE = API_SUFFIX + "%s";
+	
+	public static final String MEMO = API_SUFFIX + "memo";
+	public static final String PARTY = API_SUFFIX + "party";
+	
+	public static final String LIST_ALL = API_SUFFIX + "listAll";
+	public static final String PATH_PAGE = API_SUFFIX + PATH_REFER_OPEN + "page" + PATH_REFER_CLOSE;
+	
+	public static final String BY_ID = API_SUFFIX + "byId";
+	public static final String PATH_ID = API_SUFFIX + PATH_REFER_OPEN + "id" + PATH_REFER_CLOSE;
+	
+	public static final String CREATE = API_SUFFIX + "create";
+	
 	@Setter
 	private RequestStrategy requestStrategy;
 	

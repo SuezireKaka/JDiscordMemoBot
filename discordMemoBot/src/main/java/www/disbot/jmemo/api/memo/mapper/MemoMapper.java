@@ -16,6 +16,8 @@ import www.disbot.jmemo.api.party.model.UserVO;
 public interface MemoMapper extends GeneralMapper {
 	public List<MemoVO> listAllMemoes(Page<MemoVO> page);
 	
+	public MemoDetailsVO getMemoById(String id);
+	
 	public MemoDetailsVO getLatestMemoOf(UserVO user);
 
 	public int createMemo(@Param("user") UserVO user, @Param("memo") MemoDTO memo);

@@ -25,10 +25,14 @@ public class MemoService {
 		List<MemoVO> result = memoMapper.listAllMemoes(page);
 		page.addAll(result);
 		
-		int totalPage = memoMapper.getFoundRows();
-		page.setTotalPage(totalPage);
+		int foundNumber = memoMapper.getFoundRows();
+		page.applyFoundNumber(foundNumber);
 		
 		return page;
+	}
+	
+	public MemoDetailsVO getMemoById(String id) {
+		return memoMapper.getMemoById(id);
 	}
 
 	public MemoDetailsVO createMemo(UserVO user, MemoDTO memo) throws BusinessException {
