@@ -62,11 +62,13 @@ public class ClassScanner {
 					if (implInterfaceList.contains(Command.class)) {
 						classList.add(target);
 					}
-					
-					List<Class<?>> superClassList = Arrays.asList(target.getSuperclass());
-					if (superClassList.contains(ApiCommand.class)) {
-						classList.add(target);
+					else {
+						List<Class<?>> superClassList = Arrays.asList(target.getSuperclass());
+						if (superClassList.contains(ApiCommand.class)) {
+							classList.add(target);
+						}
 					}
+					
 				}
 				catch (ClassNotFoundException e) {
 					e.printStackTrace();

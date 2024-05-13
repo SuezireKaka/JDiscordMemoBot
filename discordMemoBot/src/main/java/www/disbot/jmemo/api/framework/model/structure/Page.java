@@ -1,10 +1,10 @@
 package www.disbot.jmemo.api.framework.model.structure;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +13,7 @@ import lombok.ToString;
 @Getter
 @ToString(exclude = {"offset"})
 @NoArgsConstructor
+@AllArgsConstructor
 @JsonIgnoreProperties({
 	"onePageNum",
 	"pageTerminology",
@@ -32,11 +33,12 @@ public class Page<T> {
 	@Setter
 	private int totalPage;
 	
-	private List<T> contents = new ArrayList<>();
+	List<T> contents;
 	
-	public Page(int nowPage) {
+	public Page(int nowPage, List<T> contents) {
 		this.nowPage = nowPage;
 		this.offset = (nowPage - 1) * ONE_PAGE_NUM;
+		this.contents = contents;
 	}
 	
 	public Page<T> addAll(List<T> addList) {

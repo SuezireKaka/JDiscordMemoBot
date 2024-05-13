@@ -1,5 +1,6 @@
 package www.disbot.jmemo.api.memo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class MemoService {
 	private MemoMapper memoMapper;
 	
 	public Page<MemoVO> listAllMemoes(int pageNum) {
-		Page<MemoVO> page = new Page<>(pageNum);
+		Page<MemoVO> page = new Page<>(pageNum, new ArrayList<>());
 		
 		List<MemoVO> result = memoMapper.listAllMemoes(page);
 		page.addAll(result);
