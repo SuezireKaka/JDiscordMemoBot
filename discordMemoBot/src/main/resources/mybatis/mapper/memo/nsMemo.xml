@@ -21,6 +21,7 @@
 		  from t_memo m
 		  left outer join t_party w
 		    on m.writer = w.id
+		 where m.public = 1
 		 limit #{onePageNum} offset #{offset}
 	</select>
 	

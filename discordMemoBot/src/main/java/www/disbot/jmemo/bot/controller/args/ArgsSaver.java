@@ -9,9 +9,11 @@ import net.dv8tion.jda.api.entities.User;
 import www.disbot.jmemo.bot.model.structure.Pair;
 
 public abstract class ArgsSaver {
-	private static Map<String, Pair<String, List<String>>> savedAsyncArgsMap = new HashMap<>();
 	
-	public static void init(User user, String command) {
+	private static Map<String, Pair<String, List<String>>> savedAsyncArgsMap =
+			new HashMap<>();
+	
+	public static void reserve(User user, String command) {
 		String id = user.getId();
 		
 		if (! savedAsyncArgsMap.containsKey(id)) {
@@ -23,7 +25,7 @@ public abstract class ArgsSaver {
 		String id = user.getId();
 		
 		if (! savedAsyncArgsMap.containsKey(id)) {
-			init(user, command);
+			reserve(user, command);
 		}
 		
 		if (asyncArg.length() > 0) {

@@ -76,7 +76,7 @@ public class MemoCommand extends ApiCommand implements ArgsHoldingCommand {
 				throw new UnexpectedArgsException(expectedArgArray, arg);
 			}
 			
-			ArgsSaver.init(user, setupCommand(argsMap));
+			ArgsSaver.reserve(user, setupCommand(argsMap));
 		}
 		else {
 			ArgsSaver.save(user, setupCommand(argsMap), asyncArg);
@@ -102,18 +102,22 @@ public class MemoCommand extends ApiCommand implements ArgsHoldingCommand {
 			
 			parser = new ArgRequireParser(msg);
 		}
-		else { // 둘이 같아야 여기 들어온다
+		else { // 요구되는 수와 들어온 수가 같아야 여기 들어온다
 			MemoDTO memoBody = MemoDTO.builder()
 					.isPublic(argsMap.get(ARGS_NAME_ARRAY[0]).equals(PUBLIC))
 					.title(savedArgs[0])
 					.memo(savedArgs[1])
 					.build();
 			
-			MemoDetailsVO response = requestTo(MEMO + CREATE, HttpMethod.POST, memoBody, MemoDetailsVO.class);
-			
-			parser = new MemoDetailsParser(response);
-			
-			ArgsSaver.remove(user);
+			try {
+				MemoDetailsVO response = requestTo(MEMO + CREATE,
+						HttpMethod.POST, memoBody,
+						MemoDetailsVO.class);
+				parser = new MemoDetailsParser(response);
+			}
+			finally {
+				ArgsSaver.remove(user);
+			}
 		}
 		
 	   	DiscordContents contents = new DiscordContents(parser);
